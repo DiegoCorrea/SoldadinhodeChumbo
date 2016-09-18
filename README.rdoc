@@ -1,4 +1,4 @@
-# SoldadinhodeChumbo
+== SoldadinhodeChumbo
 Repositório do Sistema Soldadinho de Chumbo
 
 == Especificação Técnica
@@ -8,7 +8,7 @@ Repositório do Sistema Soldadinho de Chumbo
 * Hospedagem de Desenvolvimento: Heroku
 * Banco de Dados: Postgre
 * Gerenciador de Versão: GitHub
-* Gems:
+== Gems:
 	* Bootstrap 3.0 ou 4.0(depende se vai usar tema)
 	* Jquery
 	* Devise
