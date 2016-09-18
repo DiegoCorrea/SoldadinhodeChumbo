@@ -17,4 +17,4 @@ Repositório do Sistema Soldadinho de Chumbo
 * Lograge
 * PaperClip(? vai usar imagem?)
 * Autoprefix rails
-<tt>rake doc:app</tt>.
+<tt>Meu Soldadinho de Cumbo</tt>.
