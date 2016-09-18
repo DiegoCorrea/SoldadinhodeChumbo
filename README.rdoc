@@ -9,12 +9,12 @@ Repositório do Sistema Soldadinho de Chumbo
 * Banco de Dados: Postgre
 * Gerenciador de Versão: GitHub
 == Gems:
-	* Bootstrap 3.0 ou 4.0(depende se vai usar tema)
-	* Jquery
-	* Devise
-	* Font Awesome
-	* Animate
-	* Lograge
-	* PaperClip(? vai usar imagem?)
-	* Autoprefix rails
+* Bootstrap 3.0 ou 4.0(depende se vai usar tema)
+* Jquery
+* Devise
+* Font Awesome
+* Animate
+* Lograge
+* PaperClip(? vai usar imagem?)
+* Autoprefix rails
 <tt>rake doc:app</tt>.
