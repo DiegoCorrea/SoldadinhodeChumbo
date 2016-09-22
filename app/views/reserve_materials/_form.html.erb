@@ -1,0 +1,29 @@
+<%= form_for(@reserve_material) do |f| %>
+  <% if @reserve_material.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reserve_material.errors.count, "error") %> prohibited this reserve_material from being saved:</h2>
+
+      <ul>
+      <% @reserve_material.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :weapons_id %><br>
+    <%= f.text_field :weapons_id %>
+  </div>
+  <div class="field">
+    <%= f.label :accessories_id %><br>
+    <%= f.text_field :accessories_id %>
+  </div>
+  <div class="field">
+    <%= f.label :munitions_id %><br>
+    <%= f.text_field :munitions_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

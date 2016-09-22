@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  weapons_id: 
+  accessories_id: 
+  munitions_id: 
+
+two:
+  weapons_id: 
+  accessories_id: 
+  munitions_id: 

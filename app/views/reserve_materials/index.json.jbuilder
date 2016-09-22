@@ -1,0 +1,1 @@
+json.array! @reserve_materials, partial: 'reserve_materials/reserve_material', as: :reserve_material

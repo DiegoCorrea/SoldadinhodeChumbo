@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Weapons:</strong>
+  <%= @reserve_material.weapons %>
+</p>
+
+<p>
+  <strong>Accessories:</strong>
+  <%= @reserve_material.accessories %>
+</p>
+
+<p>
+  <strong>Munitions:</strong>
+  <%= @reserve_material.munitions %>
+</p>
+
+<%= link_to 'Edit', edit_reserve_material_path(@reserve_material) %> |
+<%= link_to 'Back', reserve_materials_path %>
