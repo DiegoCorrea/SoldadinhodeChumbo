@@ -1,0 +1,1 @@
+json.partial! "munitions/munition", munition: @munition

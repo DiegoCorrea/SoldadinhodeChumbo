@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Munitions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Caliber</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @munitions.each do |munition| %>
+      <tr>
+        <td><%= munition.caliber %></td>
+        <td><%= munition.description %></td>
+        <td><%= link_to 'Show', munition %></td>
+        <td><%= link_to 'Edit', edit_munition_path(munition) %></td>
+        <td><%= link_to 'Destroy', munition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Munition', new_munition_path %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Serialnumber:</strong>
+  <%= @weapon.serialNumber %>
+</p>
+
+<p>
+  <strong>Model:</strong>
+  <%= @weapon.model %>
+</p>
+
+<p>
+  <strong>Factory:</strong>
+  <%= @weapon.factory %>
+</p>
+
+<%= link_to 'Edit', edit_weapon_path(@weapon) %> |
+<%= link_to 'Back', weapons_path %>
