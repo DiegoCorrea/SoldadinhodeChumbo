@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160922231613) do
+ActiveRecord::Schema.define(version: 20160923061828) do
 
   create_table "accessories", force: :cascade do |t|
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.boolean  "allocated"
   end
 
   create_table "munitions", force: :cascade do |t|
@@ -24,6 +25,7 @@ ActiveRecord::Schema.define(version: 20160922231613) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.boolean  "allocated"
   end
 
   create_table "reserve_materials", force: :cascade do |t|
@@ -44,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160922231613) do
     t.string   "factory"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.boolean  "allocated"
   end
 
 end
