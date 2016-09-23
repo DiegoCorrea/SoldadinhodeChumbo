@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923061828) do
+ActiveRecord::Schema.define(version: 20160923161102) do
 
   create_table "accessories", force: :cascade do |t|
     t.text     "description"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160923061828) do
     t.integer  "munitions_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.boolean  "active"
   end
 
   add_index "reserve_materials", ["accessories_id"], name: "index_reserve_materials_on_accessories_id"

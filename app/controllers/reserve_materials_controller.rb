@@ -28,6 +28,10 @@ class ReserveMaterialsController < ApplicationController
   # POST /reserve_materials.json
   def create
     @reserve_material = ReserveMaterial.new(reserve_material_params)
+    @reserve_material.active = true
+    @reserve_material.weapons.allocated = true
+    @reserve_material.munitions.allocated = true
+    @reserve_material.accessories.allocated = true
 
     respond_to do |format|
       if @reserve_material.save
