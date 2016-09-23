@@ -16,9 +16,9 @@
   <tbody>
     <% @reserveMaterialsAllocated.each do |reserve_material| %>
       <tr>
-        <td><%= reserve_material.weapons %></td>
-        <td><%= reserve_material.accessories %></td>
-        <td><%= reserve_material.munitions %></td>
+        <td><%= reserve_material.weapons.numberSerie %></td>
+        <td><%= reserve_material.accessories.description %></td>
+        <td><%= reserve_material.munitions.caliber %></td>
         <td><%= link_to 'Show', reserve_material %></td>
         <td><%= link_to 'Edit', edit_reserve_material_path(reserve_material) %></td>
         <td><%= link_to 'Destroy', reserve_material, method: :delete, data: { confirm: 'Are you sure?' } %></td>

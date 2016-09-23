@@ -30,8 +30,7 @@ class MunitionsController < ApplicationController
 
     respond_to do |format|
       if @munition.save
-        format.html { redirect_to @munition, notice: 'Munition was successfully created.' }
-        format.json { render :show, status: :created, location: @munition }
+        format.html { redirect_to munitions_path, notice: 'Munition was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @munition.errors, status: :unprocessable_entity }
@@ -44,7 +43,7 @@ class MunitionsController < ApplicationController
   def update
     respond_to do |format|
       if @munition.update(munition_params)
-        format.html { redirect_to @munition, notice: 'Munition was successfully updated.' }
+        format.html { redirect_to munition_path, notice: 'Munition was successfully updated.' }
         format.json { render :show, status: :ok, location: @munition }
       else
         format.html { render :edit }

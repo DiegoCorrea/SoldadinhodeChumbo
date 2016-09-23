@@ -29,14 +29,22 @@ class ReserveMaterialsController < ApplicationController
   def create
     @reserve_material = ReserveMaterial.new(reserve_material_params)
     @reserve_material.active = true
-    @reserve_material.weapons.allocated = true
-    @reserve_material.munitions.allocated = true
-    @reserve_material.accessories.allocated = true
+
+    if !@reserve_material.weapons_id.nil?
+      @reserve_material.weapons_id.allocated = true
+    end
+      
+    if !@reserve_material.munitions.empty?
+      @reserve_material.munitions.allocated = true
+    end
+
+    if !@reserve_material.accessories.empty?
+      @reserve_material.accessories.allocated = true
+    end
 
     respond_to do |format|
       if @reserve_material.save
-        format.html { redirect_to @reserve_material, notice: 'Reserve material was successfully created.' }
-        format.json { render :show, status: :created, location: @reserve_material }
+        format.html { redirect_to reserve_material_path, notice: 'Reserve material was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @reserve_material.errors, status: :unprocessable_entity }
