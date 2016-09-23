@@ -11,22 +11,27 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :weapons_id %><br>
-    <%= f.text_field :weapons_id %>
-  </div>
-  <div class="field">
-    <%= f.label :accessories_id %><br>
-    <%= f.text_field :accessories_id %>
-  </div>
-  <div class="field">
-    <%= f.label :munitions_id %><br>
-    <%= f.text_field :munitions_id %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
   <div class="col-md-4">
-    <%= collection_radio_buttons(:reserve_material, :weapons_id, @weaponsUnallocated.all, :id, :model) %>
+    <h2>Armas</h2>
+    <%= collection_radio_buttons(:reserve_material, :weapons_id, @weaponsUnallocated.all, :id, :model) do |b| %>
+      <%= b.label(:"data-value" => b.value) { b.radio_button + b.text } %></br>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <h2>Munição</h2>
+    <%= collection_radio_buttons(:reserve_material, :munitions_id, @munitionsUnallocated.all, :id, :caliber) do |b| %>
+      <%= b.label(:"data-value" => b.value) { b.radio_button + b.text } %></br>
+    <% end %>
+  </div>
+
+  <div class="col-md-4">
+    <h2>Acessorios</h2>
+    <%= collection_radio_buttons(:reserve_material, :accessories_id, @accessoriesUnallocated.all, :id, :description) do |b| %>
+      <%= b.label(:"data-value" => b.value) { b.radio_button + b.text } %></br>
+    <% end %>
   </div>
 <% end %>
