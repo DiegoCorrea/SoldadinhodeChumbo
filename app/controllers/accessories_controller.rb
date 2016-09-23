@@ -4,8 +4,8 @@ class AccessoriesController < ApplicationController
   # GET /accessories
   # GET /accessories.json
   def index
-    @accessoriesNotAllocated = Accessory.where(:allocated => false).order("description ASC") 
-    @accessoriesallocated = Accessory.where(:allocated => true).order("description ASC") 
+    @accessoriesUnllocated = Accessory.where(:allocated => false).order("description ASC") 
+    @accessoriesAllocated = Accessory.where(:allocated => true).order("description ASC") 
   end
 
   # GET /accessories/1

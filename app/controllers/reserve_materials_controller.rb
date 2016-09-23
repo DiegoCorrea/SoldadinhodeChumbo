@@ -15,6 +15,10 @@ class ReserveMaterialsController < ApplicationController
   # GET /reserve_materials/new
   def new
     @reserve_material = ReserveMaterial.new
+
+    @weaponsUnallocated = Weapon.where(:allocated => false).order("serialNumber ASC")
+    @munitionsUnallocated = Munition.where(:allocated => false).order("caliber ASC")
+    @accessoriesUnallocated = Accessory.where(:allocated => false).order("description ASC")
   end
 
   # GET /reserve_materials/1/edit

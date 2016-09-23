@@ -13,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @accessoriesallocated.each do |accessory| %>
+    <% @accessoriesAllocated.each do |accessory| %>
       <tr>
         <td><%= accessory.description %></td>
         <td><%= link_to 'Show', accessory %></td>
@@ -37,7 +37,7 @@
   </thead>
 
   <tbody>
-    <% @accessoriesNotAllocated.each do |accessory| %>
+    <% @accessoriesUnallocated.each do |accessory| %>
       <tr>
         <td><%= accessory.description %></td>
         <td><%= link_to 'Show', accessory %></td>
