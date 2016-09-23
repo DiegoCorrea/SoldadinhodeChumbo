@@ -26,4 +26,7 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+  <div class="col-md-4">
+    <%= collection_radio_buttons(:reserve_material, :weapons_id, @weaponsUnallocated.all, :id, :model) %>
+  </div>
 <% end %>
