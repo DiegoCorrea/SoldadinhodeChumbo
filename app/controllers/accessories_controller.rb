@@ -4,7 +4,8 @@ class AccessoriesController < ApplicationController
   # GET /accessories
   # GET /accessories.json
   def index
-    @accessories = Accessory.all
+    @accessoriesNotAllocated = Accessory.where(:allocated => false).order("description ASC") 
+    @accessoriesallocated = Accessory.where(:allocated => true).order("description ASC") 
   end
 
   # GET /accessories/1
@@ -25,6 +26,7 @@ class AccessoriesController < ApplicationController
   # POST /accessories.json
   def create
     @accessory = Accessory.new(accessory_params)
+    @accessory.allocated = false
 
     respond_to do |format|
       if @accessory.save

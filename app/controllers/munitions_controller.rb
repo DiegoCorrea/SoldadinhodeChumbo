@@ -4,7 +4,8 @@ class MunitionsController < ApplicationController
   # GET /munitions
   # GET /munitions.json
   def index
-    @munitions = Munition.all
+    @munitionsAllocated = Munition.where(:allocated => true).order("caliber ASC")
+    @munitionsUnallocated = Munition.where(:allocated => false).order("caliber ASC")
   end
 
   # GET /munitions/1
@@ -25,6 +26,7 @@ class MunitionsController < ApplicationController
   # POST /munitions.json
   def create
     @munition = Munition.new(munition_params)
+    @munition. allocated = false
 
     respond_to do |format|
       if @munition.save

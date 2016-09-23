@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Weapons</h1>
+<%= link_to 'New Weapon', new_weapon_path %>
+<h1>Allocated Weapons</h1>
 
 <table>
   <thead>
@@ -13,7 +14,7 @@
   </thead>
 
   <tbody>
-    <% @weapons.each do |weapon| %>
+    <% @weaponsAllocated.each do |weapon| %>
       <tr>
         <td><%= weapon.serialNumber %></td>
         <td><%= weapon.model %></td>
@@ -27,5 +28,28 @@
 </table>
 
 <br>
+<h1>Unallocated Weapons</h1>
 
-<%= link_to 'New Weapon', new_weapon_path %>
+<table>
+  <thead>
+    <tr>
+      <th>Serialnumber</th>
+      <th>Model</th>
+      <th>Factory</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weaponsUnallocated.each do |weapon| %>
+      <tr>
+        <td><%= weapon.serialNumber %></td>
+        <td><%= weapon.model %></td>
+        <td><%= weapon.factory %></td>
+        <td><%= link_to 'Show', weapon %></td>
+        <td><%= link_to 'Edit', edit_weapon_path(weapon) %></td>
+        <td><%= link_to 'Destroy', weapon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

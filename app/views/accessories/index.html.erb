@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Accessories</h1>
+<%= link_to 'New Accessory', new_accessory_path %>
+
+<h1>Allocated Accessories</h1>
 
 <table>
   <thead>
@@ -11,7 +13,7 @@
   </thead>
 
   <tbody>
-    <% @accessories.each do |accessory| %>
+    <% @accessoriesallocated.each do |accessory| %>
       <tr>
         <td><%= accessory.description %></td>
         <td><%= link_to 'Show', accessory %></td>
@@ -24,4 +26,24 @@
 
 <br>
 
-<%= link_to 'New Accessory', new_accessory_path %>
+<h1>Unallocated Accessories</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @accessoriesNotAllocated.each do |accessory| %>
+      <tr>
+        <td><%= accessory.description %></td>
+        <td><%= link_to 'Show', accessory %></td>
+        <td><%= link_to 'Edit', edit_accessory_path(accessory) %></td>
+        <td><%= link_to 'Destroy', accessory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

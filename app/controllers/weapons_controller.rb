@@ -4,7 +4,8 @@ class WeaponsController < ApplicationController
   # GET /weapons
   # GET /weapons.json
   def index
-    @weapons = Weapon.all
+    @weaponsAllocated = Weapon.where(:allocated => true).order("serialNumber ASC")
+    @weaponsUnallocated = Weapon.where(:allocated => false).order("serialNumber ASC") 
   end
 
   # GET /weapons/1
@@ -25,6 +26,7 @@ class WeaponsController < ApplicationController
   # POST /weapons.json
   def create
     @weapon = Weapon.new(weapon_params)
+    @weapon.allocated = false
 
     respond_to do |format|
       if @weapon.save
