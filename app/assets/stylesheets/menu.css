@@ -1,0 +1,49 @@
+.menu-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(240,240,240,0.8);
+  margin-top: -1em;
+  padding: 1.5rem 1rem 0.5rem 1rem;
+}
+.responsive {
+  background-color: #444;
+  color: #f7f7f7;
+  width: 10rem;
+  height: calc(100% - 56px);
+  position: absolute;
+  z-index: 1000;
+  left: -10rem;
+  transition: left 0.5s;
+  -webkit-transition: left 0.5s;
+  -o-transition: left 0.5s;
+  -moz-transition: left 0.5s;
+}
+.responsive ul {
+  margin: 0 0 0 -2.5rem;
+}
+.responsive ul li {
+  list-style: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 1.2rem;
+}
+.responsive ul li:hover {
+  color: #ddd;
+  background-color: #6b6b6b;
+}
+.responsive ul li a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+.logo {
+  background-color: #485a9e;
+  color: #fff;
+  padding: 0.7rem;
+  text-align: center;
+}
+.gatilho-menu {
+  cursor: pointer;
+}
