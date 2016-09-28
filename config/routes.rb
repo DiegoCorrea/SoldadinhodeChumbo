@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reserves
   resources :reserve_materials
   resources :accessories
   resources :munitions

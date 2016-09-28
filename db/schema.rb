@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160923161102) do
+ActiveRecord::Schema.define(version: 20160928225521) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "accessories", force: :cascade do |t|
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.boolean  "allocated"
   end
 
   create_table "munitions", force: :cascade do |t|
@@ -25,21 +27,14 @@ ActiveRecord::Schema.define(version: 20160923161102) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.boolean  "allocated"
   end
 
-  create_table "reserve_materials", force: :cascade do |t|
-    t.integer  "weapons_id"
-    t.integer  "accessories_id"
-    t.integer  "munitions_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.boolean  "active"
+  create_table "reserves", force: :cascade do |t|
+    t.string   "initials"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
-
-  add_index "reserve_materials", ["accessories_id"], name: "index_reserve_materials_on_accessories_id"
-  add_index "reserve_materials", ["munitions_id"], name: "index_reserve_materials_on_munitions_id"
-  add_index "reserve_materials", ["weapons_id"], name: "index_reserve_materials_on_weapons_id"
 
   create_table "weapons", force: :cascade do |t|
     t.integer  "serialNumber"
@@ -47,7 +42,6 @@ ActiveRecord::Schema.define(version: 20160923161102) do
     t.string   "factory"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
-    t.boolean  "allocated"
   end
 
 end
