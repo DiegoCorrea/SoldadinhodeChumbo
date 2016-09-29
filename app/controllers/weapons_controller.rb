@@ -4,8 +4,7 @@ class WeaponsController < ApplicationController
   # GET /weapons
   # GET /weapons.json
   def index
-    @weaponsAllocated = Weapon.where(:allocated => true).order("serialNumber ASC")
-    @weaponsUnallocated = Weapon.where(:allocated => false).order("serialNumber ASC") 
+    @weapons = Weapon.all
   end
 
   # GET /weapons/1
@@ -26,12 +25,11 @@ class WeaponsController < ApplicationController
   # POST /weapons.json
   def create
     @weapon = Weapon.new(weapon_params)
-    @weapon.allocated = false
 
     respond_to do |format|
       if @weapon.save
-        format.html { redirect_to @weapon, notice: 'Weapon was successfully created.' }
-        format.json { render :show, status: :created, location: @weapon }
+        format.html { redirect_to weapons_path, notice: 'Weapon was successfully created.' }
+        format.json { render :show, status: :created, location: weapons_path }
       else
         format.html { render :new }
         format.json { render json: @weapon.errors, status: :unprocessable_entity }
@@ -44,8 +42,8 @@ class WeaponsController < ApplicationController
   def update
     respond_to do |format|
       if @weapon.update(weapon_params)
-        format.html { redirect_to @weapon, notice: 'Weapon was successfully updated.' }
-        format.json { render :show, status: :ok, location: @weapon }
+        format.html { redirect_to weapons_path, notice: 'Weapon was successfully updated.' }
+        format.json { render :show, status: :ok, location: weapons_path }
       else
         format.html { render :edit }
         format.json { render json: @weapon.errors, status: :unprocessable_entity }

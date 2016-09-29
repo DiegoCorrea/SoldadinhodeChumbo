@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  root 'welcome#index'
+
   resources :reserves
-  resources :reserve_materials
+  
+  #
   resources :accessories
   resources :munitions
   resources :weapons
