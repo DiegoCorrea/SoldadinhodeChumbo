@@ -1,0 +1,1 @@
+json.array! @garrisons, partial: 'garrisons/garrison', as: :garrison

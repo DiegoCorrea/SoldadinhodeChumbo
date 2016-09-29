@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Garrisons</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Reserve</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @garrisons.each do |garrison| %>
+      <tr>
+        <td><%= garrison.reserve %></td>
+        <td><%= link_to 'Show', garrison %></td>
+        <td><%= link_to 'Edit', edit_garrison_path(garrison) %></td>
+        <td><%= link_to 'Destroy', garrison, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Garrison', new_garrison_path %>
