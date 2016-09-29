@@ -25,8 +25,10 @@ class SoldiersController < ApplicationController
   # POST /soldiers
   # POST /soldiers.json
   def create
-    @soldier = Soldier.new(soldier_params)
-
+    #@soldier = Soldier.new(soldier_params)
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @soldier = @reserve.soldiers.build(soldier_params)
+    
     respond_to do |format|
       if @soldier.save
         format.html { redirect_to reserf_soldiers_path, notice: 'Soldier was successfully created.' }

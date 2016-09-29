@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
 <%= link_to 'Criar Soldado', new_reserf_soldier_path(@reserve) %></br>
+</br>
+<%= link_to 'Edit', edit_reserf_path(@reserve) %> |
+<%= link_to 'Back', reserves_path %>
+</br>
 <p>
   <strong>Initials:</strong>
   <%= @reserve.initials %>
@@ -10,5 +14,25 @@
   <%= @reserve.description %>
 </p>
 
-<%= link_to 'Edit', edit_reserf_path(@reserve) %> |
-<%= link_to 'Back', reserves_path %>
+<h1>Listing Soldiers</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Warname</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @soldiers.each do |soldier| %>
+      <tr>
+        <td><%= soldier.function %></td>
+        <td><%= soldier.warName %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

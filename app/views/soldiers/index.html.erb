@@ -18,13 +18,9 @@
         <td><%= soldier.function %></td>
         <td><%= soldier.warName %></td>
         <td><%= soldier.reserve %></td>
-        <td><%= link_to 'Edit', edit_reserf_soldier_path(soldier) %></td>
-        <td><%= link_to 'Destroy', soldier, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Soldier', new_soldier_path %>

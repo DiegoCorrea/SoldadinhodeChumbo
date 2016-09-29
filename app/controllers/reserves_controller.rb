@@ -10,7 +10,7 @@ class ReservesController < ApplicationController
   # GET /reserves/1
   # GET /reserves/1.json
   def show
-    @soldires = @reserve.soldiers
+    @soldiers = @reserve.soldiers
   end
 
   # GET /reserves/new
