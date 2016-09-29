@@ -4,7 +4,8 @@ class SoldiersController < ApplicationController
   # GET /soldiers
   # GET /soldiers.json
   def index
-    @soldiers = Soldier.all
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @soldiers = Soldier.where(reserve: params[:reserf_id])
   end
 
   # GET /soldiers/1
@@ -20,6 +21,7 @@ class SoldiersController < ApplicationController
 
   # GET /soldiers/1/edit
   def edit
+    @reserve = Reserve.where(id: params[:reserf_id]).first
   end
 
   # POST /soldiers
@@ -59,7 +61,7 @@ class SoldiersController < ApplicationController
   def destroy
     @soldier.destroy
     respond_to do |format|
-      format.html { redirect_to soldiers_url, notice: 'Soldier was successfully destroyed.' }
+      format.html { redirect_to reserf_soldiers_path, notice: 'Soldier was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -1,19 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Function:</strong>
+  <strong>Função:</strong>
   <%= @soldier.function %>
 </p>
 
 <p>
-  <strong>Warname:</strong>
+  <strong>Nome de Guerra:</strong>
   <%= @soldier.warName %>
 </p>
 
 <p>
-  <strong>Reserve:</strong>
-  <%= @soldier.reserve %>
+  <strong>Reserva que Pertence:</strong>
+  <%= @soldier.reserve.initials %>
 </p>
 
-<%= link_to 'Edit', edit_soldier_path(@soldier) %> |
-<%= link_to 'Back', soldiers_path %>
+<%= link_to 'Back', reserf_soldiers_path %>
