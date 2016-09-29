@@ -1,14 +1,14 @@
 <p id="notice"><%= notice %></p>
-
+<%= link_to 'Criar Soldado', new_reserf_soldier_path(@reserve) %></br>
 <p>
   <strong>Initials:</strong>
-  <%= @reserf.initials %>
+  <%= @reserve.initials %>
 </p>
 
 <p>
   <strong>Description:</strong>
-  <%= @reserf.description %>
+  <%= @reserve.description %>
 </p>
 
-<%= link_to 'Edit', edit_reserf_path(@reserf) %> |
+<%= link_to 'Edit', edit_reserf_path(@reserve) %> |
 <%= link_to 'Back', reserves_path %>

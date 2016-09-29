@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  function: MyString
+  warName: MyString
+  reserve_id: 
+
+two:
+  function: MyString
+  warName: MyString
+  reserve_id: 
