@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160930061546) do
+ActiveRecord::Schema.define(version: 20160930191655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,10 @@ ActiveRecord::Schema.define(version: 20160930061546) do
     t.text     "description"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "garrison_id"
   end
+
+  add_index "munitions", ["garrison_id"], name: "index_munitions_on_garrison_id", using: :btree
 
   create_table "reserves", force: :cascade do |t|
     t.string   "initials"
