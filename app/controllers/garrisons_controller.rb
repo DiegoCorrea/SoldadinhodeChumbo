@@ -5,23 +5,10 @@ class GarrisonsController < ApplicationController
   # GET /garrisons.json
   def index
     @reserve = Reserve.where(id: params[:reserf_id]).first
-    @weapons = @reserve.garrison.weapons
-  end
-
-  # POST /garrisons
-  # POST /garrisons.json
-  def create
-    @garrison = Garrison.new(garrison_params)
-
-    respond_to do |format|
-      if @garrison.save
-        format.html { redirect_to @garrison, notice: 'Garrison was successfully created.' }
-        format.json { render :show, status: :created, location: @garrison }
-      else
-        format.html { render :new }
-        format.json { render json: @garrison.errors, status: :unprocessable_entity }
-      end
-    end
+    @garrison = @reserve.garrison
+    @weapons = Weapon.where(garrison: @garrison)
+    @munitions = Munition.where(garrison: @garrison)
+    @accessories = Accessory.where(garrison: @garrison)
   end
 
   # DELETE /garrisons/1
