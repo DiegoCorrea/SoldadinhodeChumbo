@@ -5,6 +5,7 @@ class GarrisonsController < ApplicationController
   # GET /garrisons.json
   def index
     @reserve = Reserve.where(id: params[:reserf_id]).first
+    
     @garrison = @reserve.garrison
     @weapons = Weapon.where(garrison: @garrison)
     @munitions = Munition.where(garrison: @garrison)

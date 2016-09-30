@@ -27,6 +27,7 @@ class ReservesController < ApplicationController
   # POST /reserves.json
   def create
     @reserve = Reserve.new(reserve_params)
+    @reserve.build_garrison
 
     respond_to do |format|
       if @reserve.save
