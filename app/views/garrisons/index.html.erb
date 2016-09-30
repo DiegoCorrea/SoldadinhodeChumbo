@@ -1,11 +1,12 @@
 <p id="notice"><%= notice %></p>
-<%= link_to reserf_garrisons_path(@reserve) do %>
+<%= link_to reserf_path(@reserve) do %>
   <div class="btn"><i class="fa fa-backward" aria-hidden="true"></i></div>
 <% end %>
 <h1>Guarnição</h1>
 
 <div class="col-md-4">
   <h3>Lista de Armas</h3>
+  <%= render "weapons/index" %>
 </div>
 <div class="col-md-4">
   <h3>Lista de Munição</h3>

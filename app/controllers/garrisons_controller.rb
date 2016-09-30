@@ -5,11 +5,7 @@ class GarrisonsController < ApplicationController
   # GET /garrisons.json
   def index
     @reserve = Reserve.where(id: params[:reserf_id]).first
-  end
-
-  # GET /garrisons/new
-  def new
-    @garrison = Garrison.new
+    @weapons = @reserve.garrison.weapons
   end
 
   # POST /garrisons
