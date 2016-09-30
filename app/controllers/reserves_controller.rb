@@ -16,6 +16,7 @@ class ReservesController < ApplicationController
   # GET /reserves/new
   def new
     @reserve = Reserve.new
+    @reserve.build_garrison
   end
 
   # GET /reserves/1/edit
