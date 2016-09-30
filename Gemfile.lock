@@ -173,6 +173,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap (~> 4.0.0.alpha4)
+  bundler
   byebug
   coffee-rails (~> 4.1.0)
   devise

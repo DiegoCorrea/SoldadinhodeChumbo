@@ -50,4 +50,5 @@ gem "font-awesome-rails"
 gem 'jquery-ui-rails'
 gem 'pg'
 gem 'puma'
+gem 'bundler'
 ruby '2.3.1'
