@@ -4,12 +4,14 @@ Rails.application.routes.draw do
 
   resources :reserves do
     resources :soldiers
-    resources :garrisons
+    resources :garrisons do
+      resources :accessories
+      resources :munitions
+      resources :weapons
+    end
   end
   #
-  resources :accessories
-  resources :munitions
-  resources :weapons
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
