@@ -1,4 +1,4 @@
-<%= form_for(@weapon) do |f| %>
+<%= form_for([@reserve, @garrison, @weapon]) do |f| %>
   <% if @weapon.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@weapon.errors.count, "error") %> prohibited this weapon from being saved:</h2>

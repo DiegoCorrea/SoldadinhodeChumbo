@@ -4,7 +4,9 @@ class WeaponsController < ApplicationController
   # GET /weapons
   # GET /weapons.json
   def index
-    @weapons = Weapon.all
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @garrison = :garrison_id
+    @weapons = Weapon.where(garrison: @garrison)
   end
 
   # GET /weapons/1
@@ -14,22 +16,28 @@ class WeaponsController < ApplicationController
 
   # GET /weapons/new
   def new
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @garrison = @reserve.garrison
     @weapon = Weapon.new
   end
 
   # GET /weapons/1/edit
   def edit
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @garrison = @reserve.garrison
   end
 
   # POST /weapons
   # POST /weapons.json
   def create
-    @weapon = Weapon.new(weapon_params)
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @garrison = @reserve.garrison
+    @weapon = @garrison.weapons.build(weapon_params)
 
     respond_to do |format|
       if @weapon.save
-        format.html { redirect_to weapons_path, notice: 'Weapon was successfully created.' }
-        format.json { render :show, status: :created, location: weapons_path }
+        format.html { redirect_to reserf_garrisons_path, notice: 'Weapon was successfully created.' }
+        format.json { render :show, status: :created, location: reserf_garrisons_path }
       else
         format.html { render :new }
         format.json { render json: @weapon.errors, status: :unprocessable_entity }
@@ -42,8 +50,8 @@ class WeaponsController < ApplicationController
   def update
     respond_to do |format|
       if @weapon.update(weapon_params)
-        format.html { redirect_to weapons_path, notice: 'Weapon was successfully updated.' }
-        format.json { render :show, status: :ok, location: weapons_path }
+        format.html { redirect_to reserf_garrisons_path, notice: 'Weapon was successfully updated.' }
+        format.json { render :show, status: :ok, location: reserf_garrisons_path }
       else
         format.html { render :edit }
         format.json { render json: @weapon.errors, status: :unprocessable_entity }
@@ -56,7 +64,7 @@ class WeaponsController < ApplicationController
   def destroy
     @weapon.destroy
     respond_to do |format|
-      format.html { redirect_to weapons_url, notice: 'Weapon was successfully destroyed.' }
+      format.html { redirect_to reserf_garrisons_url, notice: 'Weapon was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
