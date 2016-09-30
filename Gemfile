@@ -51,5 +51,5 @@ gem 'jquery-ui-rails'
 gem 'pg'
 gem 'puma'
 gem 'bundler'
-gem 'rails_12factor'
+gem 'rails_12factor', group: :production
 ruby '2.3.1'
