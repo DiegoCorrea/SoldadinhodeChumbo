@@ -15,4 +15,10 @@
   <%= @soldier.reserve.initials %>
 </p>
 
-<%= link_to 'Back', reserf_soldiers_path %>
+<%= link_to reserf_soldiers_path do%>
+  <p>
+    <div class="btn"><i class="fa fa-backward" aria-hidden="true"></i></div>
+    <span>Lista de Soldados</span>
+  </p>
+
+<% end %>

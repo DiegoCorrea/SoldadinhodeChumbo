@@ -1,7 +1,20 @@
 <p id="notice"><%= notice %></p>
 </br>
-<%= link_to 'Voltar para Reservas', reserves_path %>
-</br>
+<div class="col-md-6">
+  <%= link_to reserves_path do%>
+    <p>
+      <div class="btn"><i class="fa fa-backward" aria-hidden="true"></i></div>
+      <span>Lista de Reservas</span>
+    </p>
+  <% end %>
+</div>
+<div class="col-md-6">
+  <%= link_to reserf_garrisons_path(@reserve) do%>
+    <p>
+      <span>Guarnição</span><div class="btn"><i class="fa fa-forward" aria-hidden="true"></i></div>
+    </p>
+  <% end %>
+</div>
 <p>
   <strong>Sigla:</strong>
   <%= @reserve.initials %>
@@ -29,7 +42,7 @@
         <td><%= soldier.function %></td>
         <td><%= soldier.warName %></td>
         <td>
-          <%= link_to reserf_soldier_path(@reserve, soldier) do %><div class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div><% end %>
+          <%= link_to reserf_soldier_path(@reserve, soldier) do %><div class="btn btn-info"><i class="fa fa-info" aria-hidden="true"></i></div><% end %>
         </td>
         <td>
           <%= link_to edit_reserf_soldier_path(@reserve, soldier) do %><div class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div><% end %>

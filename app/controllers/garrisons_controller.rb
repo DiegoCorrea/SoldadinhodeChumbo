@@ -4,21 +4,12 @@ class GarrisonsController < ApplicationController
   # GET /garrisons
   # GET /garrisons.json
   def index
-    @garrisons = Garrison.all
-  end
-
-  # GET /garrisons/1
-  # GET /garrisons/1.json
-  def show
+    @reserve = Reserve.where(id: params[:reserf_id]).first
   end
 
   # GET /garrisons/new
   def new
     @garrison = Garrison.new
-  end
-
-  # GET /garrisons/1/edit
-  def edit
   end
 
   # POST /garrisons
@@ -32,20 +23,6 @@ class GarrisonsController < ApplicationController
         format.json { render :show, status: :created, location: @garrison }
       else
         format.html { render :new }
-        format.json { render json: @garrison.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /garrisons/1
-  # PATCH/PUT /garrisons/1.json
-  def update
-    respond_to do |format|
-      if @garrison.update(garrison_params)
-        format.html { redirect_to @garrison, notice: 'Garrison was successfully updated.' }
-        format.json { render :show, status: :ok, location: @garrison }
-      else
-        format.html { render :edit }
         format.json { render json: @garrison.errors, status: :unprocessable_entity }
       end
     end

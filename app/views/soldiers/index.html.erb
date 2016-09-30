@@ -1,7 +1,13 @@
 <p id="notice"><%= notice %></p>
+<%= link_to reserf_path(@reserve)do%>
+  <p>
+    <div class="btn"><i class="fa fa-backward" aria-hidden="true"></i></div>
+    <span>Voltar para Reserva <%= @reserve.initials %></span>
+  </p>
+<% end %>
 
-<h1>Lista de Soldados da Reserva: <%= @reserve.initials %></h1>
-<%= link_to 'Voltar para a Reserva', reserf_path(@reserve)%>
+<h2>Lista de Soldados da Reserva: <%= @reserve.initials %></h2>
+
 <table>
   <thead>
     <tr>
@@ -17,7 +23,7 @@
         <td><%= soldier.function %></td>
         <td><%= soldier.warName %></td>
         <td>
-          <%= link_to reserf_soldier_path(@reserve, soldier) do %><div class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div><% end %>
+          <%= link_to reserf_soldier_path(@reserve, soldier) do %><div class="btn btn-info"><i class="fa fa-info" aria-hidden="true"></i></div><% end %>
         </td>
         <td>
           <%= link_to edit_reserf_soldier_path(@reserve, soldier) do %><div class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div><% end %>
