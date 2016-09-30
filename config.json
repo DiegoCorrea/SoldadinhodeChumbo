@@ -1,0 +1,24 @@
+{
+  "vars": {
+    "@navbar-default-color": "#fff !default",
+    "@navbar-default-bg": "#2C3E50",
+    "@navbar-default-link-color": "#fff",
+    "@navbar-default-brand-color": "#fff"
+  },
+  "css": [
+    "print.less",
+    "type.less",
+    "code.less",
+    "grid.less",
+    "tables.less",
+    "forms.less",
+    "buttons.less",
+    "responsive-utilities.less",
+    "navs.less",
+    "navbar.less",
+    "media.less",
+    "carousel.less"
+  ],
+  "js": [],
+  "customizerUrl": "http://getbootstrap.com/customize/?id=964785f62cda8e94e74a3e58a89909d6"
+}
