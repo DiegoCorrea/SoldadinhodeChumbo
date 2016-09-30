@@ -49,4 +49,5 @@ gem 'bootstrap', '~> 4.0.0.alpha4'
 gem "font-awesome-rails"
 gem 'jquery-ui-rails'
 gem 'pg'
+gem 'puma'
 ruby '2.3.1'
