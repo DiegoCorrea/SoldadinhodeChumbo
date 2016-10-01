@@ -23,8 +23,6 @@ class MunitionsController < ApplicationController
 
   # GET /munitions/1/edit
   def edit
-    @reserve = Reserve.where(id: params[:reserf_id]).first
-    @garrison = @reserve.garrison
   end
 
   # POST /munitions
@@ -47,8 +45,6 @@ class MunitionsController < ApplicationController
   # PATCH/PUT /munitions/1
   # PATCH/PUT /munitions/1.json
   def update
-    @reserve = Reserve.where(id: params[:reserf_id]).first
-    @garrison = @reserve.garrison
     respond_to do |format|
       if @munition.update(munition_params)
         format.html { redirect_to reserf_garrisons_path, notice: 'Munition was successfully updated.' }
@@ -73,11 +69,13 @@ class MunitionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_munition
+      @reserve = Reserve.where(id: params[:reserf_id]).first
+      @garrison = @reserve.garrison
       @munition = Munition.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def munition_params
-      params.require(:munition).permit(:caliber, :description, :munition)
+      params.require(:munition).permit(:caliber, :description, :garrison)
     end
 end

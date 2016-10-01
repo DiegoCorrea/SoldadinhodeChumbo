@@ -5,8 +5,8 @@ class WeaponsController < ApplicationController
   # GET /weapons.json
   def index
     @reserve = Reserve.where(id: params[:reserf_id]).first
-    @garrison = :garrison_id
-    @weapons = Weapon.where(garrison: @garrison)
+    @garrison = @reserve.garrison
+    @weapons = @reserve.garrison.weapons
   end
 
   # GET /weapons/1
@@ -18,13 +18,11 @@ class WeaponsController < ApplicationController
   def new
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @garrison = @reserve.garrison
-    @weapon = Weapon.new
+    @weapon = @reserve.garrison.weapons.build
   end
 
   # GET /weapons/1/edit
   def edit
-    @reserve = Reserve.where(id: params[:reserf_id]).first
-    @garrison = @reserve.garrison
   end
 
   # POST /weapons
@@ -32,7 +30,7 @@ class WeaponsController < ApplicationController
   def create
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @garrison = @reserve.garrison
-    @weapon = @garrison.weapons.build(weapon_params)
+    @weapon = @reserve.garrison.weapons.build(weapon_params)
 
     respond_to do |format|
       if @weapon.save
@@ -72,11 +70,13 @@ class WeaponsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_weapon
+      @reserve = Reserve.where(id: params[:reserf_id]).first
+      @garrison = @reserve.garrison
       @weapon = Weapon.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def weapon_params
-      params.require(:weapon).permit(:serialNumber, :model, :factory)
+      params.require(:weapon).permit(:serialNumber, :model, :factory, :garrison)
     end
 end
