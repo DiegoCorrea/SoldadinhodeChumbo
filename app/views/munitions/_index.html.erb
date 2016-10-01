@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th>Caliber</th>
+      <th>amount</th>
       <th>Description</th>
       <th colspan="3"></th>
       <th class="text-md-center"><%= link_to new_reserf_garrison_munition_path(@reserve, @garrison) do %><span class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></span><% end %></th>
@@ -14,6 +15,7 @@
     <% @munitions.each do |munition| %>
       <tr>
         <td><%= munition.caliber %></td>
+        <td><%= munition.amount %></td>
         <td><%= munition.description %></td>
         <td>
           <%= link_to reserf_garrison_munition_path(@reserve, @garrison, munition) do %><div class="btn btn-info"><i class="fa fa-info" aria-hidden="true"></i></div><% end %>
