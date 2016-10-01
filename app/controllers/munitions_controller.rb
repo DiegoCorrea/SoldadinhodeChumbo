@@ -4,8 +4,9 @@ class MunitionsController < ApplicationController
   # GET /munitions
   # GET /munitions.json
   def index
-    @munitionsAllocated = Munition.where(:allocated => true).order("caliber ASC")
-    @munitionsUnallocated = Munition.where(:allocated => false).order("caliber ASC")
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @garrison = @reserve.garrison
+    @munitions = @reserve.garrison.munitions
   end
 
   # GET /munitions/1
@@ -15,22 +16,27 @@ class MunitionsController < ApplicationController
 
   # GET /munitions/new
   def new
-    @munition = Munition.new
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @garrison = @reserve.garrison
+    @munition = @reserve.garrison.munitions.build
   end
 
   # GET /munitions/1/edit
   def edit
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @garrison = @reserve.garrison
   end
 
   # POST /munitions
   # POST /munitions.json
   def create
-    @munition = Munition.new(munition_params)
-    @munition. allocated = false
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @garrison = @reserve.garrison
+    @munition = @reserve.garrison.munitions.build(munition_params)
 
     respond_to do |format|
       if @munition.save
-        format.html { redirect_to munitions_path, notice: 'Munition was successfully created.' }
+        format.html { redirect_to reserf_garrisons_path, notice: 'Munition was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @munition.errors, status: :unprocessable_entity }
@@ -41,10 +47,12 @@ class MunitionsController < ApplicationController
   # PATCH/PUT /munitions/1
   # PATCH/PUT /munitions/1.json
   def update
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @garrison = @reserve.garrison
     respond_to do |format|
       if @munition.update(munition_params)
-        format.html { redirect_to munition_path, notice: 'Munition was successfully updated.' }
-        format.json { render :show, status: :ok, location: @munition }
+        format.html { redirect_to reserf_garrisons_path, notice: 'Munition was successfully updated.' }
+        format.json { render :show, status: :ok, location: reserf_garrisons }
       else
         format.html { render :edit }
         format.json { render json: @munition.errors, status: :unprocessable_entity }
@@ -57,7 +65,7 @@ class MunitionsController < ApplicationController
   def destroy
     @munition.destroy
     respond_to do |format|
-      format.html { redirect_to munitions_url, notice: 'Munition was successfully destroyed.' }
+      format.html { redirect_to reserf_garrisons_url, notice: 'Munition was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +78,6 @@ class MunitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def munition_params
-      params.require(:munition).permit(:caliber, :description)
+      params.require(:munition).permit(:caliber, :description, :munition)
     end
 end
