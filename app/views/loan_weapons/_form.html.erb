@@ -1,0 +1,25 @@
+<%= form_for(@loan_weapon) do |f| %>
+  <% if @loan_weapon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@loan_weapon.errors.count, "error") %> prohibited this loan_weapon from being saved:</h2>
+
+      <ul>
+      <% @loan_weapon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :loan_id %><br>
+    <%= f.text_field :loan_id %>
+  </div>
+  <div class="field">
+    <%= f.label :weapon_id %><br>
+    <%= f.text_field :weapon_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

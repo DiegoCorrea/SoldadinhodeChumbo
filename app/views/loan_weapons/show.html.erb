@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Loan:</strong>
+  <%= @loan_weapon.loan %>
+</p>
+
+<p>
+  <strong>Weapon:</strong>
+  <%= @loan_weapon.weapon %>
+</p>
+
+<%= link_to 'Edit', edit_loan_weapon_path(@loan_weapon) %> |
+<%= link_to 'Back', loan_weapons_path %>

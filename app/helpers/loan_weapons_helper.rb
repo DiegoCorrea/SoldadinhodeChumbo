@@ -1,0 +1,2 @@
+module LoanWeaponsHelper
+end

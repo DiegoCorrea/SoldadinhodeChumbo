@@ -16,12 +16,11 @@ class SoldiersController < ApplicationController
   # GET /soldiers/new
   def new
     @reserve = Reserve.where(id: params[:reserf_id]).first
-    @soldier = Soldier.new
+    @soldier = @reserve.soldiers.build
   end
 
   # GET /soldiers/1/edit
   def edit
-    @reserve = Reserve.where(id: params[:reserf_id]).first
   end
 
   # POST /soldiers
@@ -69,6 +68,7 @@ class SoldiersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_soldier
+      @reserve = Reserve.where(id: params[:reserf_id]).first
       @soldier = Soldier.find(params[:id])
     end
 

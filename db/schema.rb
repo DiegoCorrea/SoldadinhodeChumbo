@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161001041032) do
+ActiveRecord::Schema.define(version: 20161006142412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,24 @@ ActiveRecord::Schema.define(version: 20161001041032) do
   end
 
   add_index "garrisons", ["reserve_id"], name: "index_garrisons_on_reserve_id", using: :btree
+
+  create_table "loan_weapons", force: :cascade do |t|
+    t.integer  "loan_id"
+    t.integer  "weapon_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "loan_weapons", ["loan_id"], name: "index_loan_weapons_on_loan_id", using: :btree
+  add_index "loan_weapons", ["weapon_id"], name: "index_loan_weapons_on_weapon_id", using: :btree
+
+  create_table "loans", force: :cascade do |t|
+    t.integer  "soldier_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "loans", ["soldier_id"], name: "index_loans_on_soldier_id", using: :btree
 
   create_table "munitions", force: :cascade do |t|
     t.integer  "caliber"
