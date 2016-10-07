@@ -17,8 +17,8 @@ class LoansController < ApplicationController
   # GET /loans/new
   def new
     @reserve = Reserve.where(id: params[:reserf_id]).first
-    @soldier = Soldier.where(id: params[:soldier_id])
-    @loan = @reserve.soldier.loans.build
+    @soldier = Soldier.find(params[:soldier_id])
+    @loan = @soldier.loans.build
   end
 
   # GET /loans/1/edit
@@ -29,13 +29,13 @@ class LoansController < ApplicationController
   # POST /loans.json
   def create
     @reserve = Reserve.where(id: params[:reserf_id]).first
-    @soldier = Soldier.where(id: params[:soldier_id])
-    @loan = @reserve.soldier.loans.build(loan_params)
+    @soldier = Soldier.find(params[:soldier_id])
+    @loan = @soldier.loans.build(loan_params)
 
     respond_to do |format|
       if @loan.save
-        format.html { redirect_to @loan, notice: 'Loan was successfully created.' }
-        format.json { render :show, status: :created, location: @loan }
+        format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan was successfully created.' }
+        format.json { render :show, status: :created, location: reserf_soldier_loan_path(@loan) }
       else
         format.html { render :new }
         format.json { render json: @loan.errors, status: :unprocessable_entity }
@@ -70,11 +70,13 @@ class LoansController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_loan
+      @reserve = Reserve.where(id: params[:reserf_id]).first
+      @soldier = Soldier.find(params[:soldier_id])
       @loan = Loan.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_params
-      params.require(:loan).permit(:soldier_id)
+      params.require(:loan).permit(:soldier_id, :reserf_id)
     end
 end

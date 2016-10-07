@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :loan_weapons
   root 'welcome#index'
 
   resources :reserves do
     resources :soldiers do
-      resources :loans
+      resources :loans do
+        resources :loan_weapons
+      end
     end
     
     resources :garrisons do

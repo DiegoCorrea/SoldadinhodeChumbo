@@ -2,8 +2,17 @@
 
 <p>
   <strong>Soldier:</strong>
-  <%= @loan.soldier %>
+  <%= @loan.soldier.warName %>
 </p>
-
-<%= link_to 'Edit', edit_loan_path(@loan) %> |
-<%= link_to 'Back', loans_path %>
+<div class="col-md-2"></div>
+<div class="col-md-8">
+	<div class="col-md-4">
+		<%=link_to "Emprestimo de arma", new_reserf_soldier_loan_loan_weapon_path(@reserve,@soldier,@loan)%>
+	</div>
+	<div class="col-md-4">
+		
+	</div>
+	<div class="col-md-4">
+		
+	</div>
+</div>

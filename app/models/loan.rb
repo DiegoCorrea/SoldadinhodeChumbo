@@ -4,4 +4,5 @@ class Loan < ActiveRecord::Base
   has_many :loans_weapons
   has_many :loans_accessories
   has_many :loans_munitions
+  has_many :weapons, through: :loan_weapons 
 end

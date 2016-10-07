@@ -1,5 +1,24 @@
-<h1>New Loan</h1>
+<h1 class="text-md-center">Novo Emprestimo</h1>
 
-<%= render 'form' %>
+<%= form_for([@reserve,@soldier,@weapon,@loan]) do |f| %>
+  <% if @loan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
 
-<%= link_to 'Back', loans_path %>
+      <ul>
+      <% @loan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field hidden">
+    <%= f.label :soldier_id %><br>
+    <%= f.text_field :soldier_id %>
+  </div>
+  <div class="actions text-md-center">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+

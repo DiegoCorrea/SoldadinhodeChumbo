@@ -14,7 +14,11 @@ class LoanWeaponsController < ApplicationController
 
   # GET /loan_weapons/new
   def new
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @soldier = Soldier.find(params[:soldier_id])
+    @loan = Loan.find(params[:loan_id])
     @loan_weapon = LoanWeapon.new
+    @loan_weapon.loan = @loan
   end
 
   # GET /loan_weapons/1/edit
@@ -24,12 +28,15 @@ class LoanWeaponsController < ApplicationController
   # POST /loan_weapons
   # POST /loan_weapons.json
   def create
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @soldier = Soldier.find(params[:soldier_id])
+    @loan = Loan.find(params[:loan_id])
     @loan_weapon = LoanWeapon.new(loan_weapon_params)
 
     respond_to do |format|
       if @loan_weapon.save
-        format.html { redirect_to @loan_weapon, notice: 'Loan weapon was successfully created.' }
-        format.json { render :show, status: :created, location: @loan_weapon }
+        format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan weapon was successfully created.' }
+        format.json { render :show, status: :created, location: reserf_soldier_loan_path(@reserve,@soldier,@loan) }
       else
         format.html { render :new }
         format.json { render json: @loan_weapon.errors, status: :unprocessable_entity }

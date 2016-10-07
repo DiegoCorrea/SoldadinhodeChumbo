@@ -1,4 +1,4 @@
-<%= form_for(@loan) do |f| %>
+<%= form_for([@reserve,@soldier,@weapon,@loan]) do |f| %>
   <% if @loan.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@loan.errors.count, "error") %> prohibited this loan from being saved:</h2>
@@ -15,6 +15,7 @@
     <%= f.label :soldier_id %><br>
     <%= f.text_field :soldier_id %>
   </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
