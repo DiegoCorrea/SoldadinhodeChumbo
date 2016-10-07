@@ -7,6 +7,7 @@ class LoansController < ApplicationController
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = Soldier.where(id: params[:soldier_id]).first
     @loans = Loan.where(soldier: @soldier)
+    @loan_weapons = LoanWeapon.all
   end
 
   # GET /loans/1

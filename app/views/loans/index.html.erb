@@ -5,7 +5,7 @@
 <div class="col-md-2"></div>
 <div class="col-md-8">
 <div class="text-md-right"><%= link_to new_reserf_soldier_loan_path(@reserve, @soldier) do %><span class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></span><% end %></div>
-  
+  <% @loans.each do |loan|%>
     <div class="col-md-4">
       <div class="card">
         <div class="card-block">
@@ -13,9 +13,13 @@
           <p class="card-text">Emprestimo feito no dia XX-XX-XXXX</p>
         </div>
         <ul class="list-group list-group-flush">
-          
-          <li class="list-group-item">Arma X modelo Y</li>
-          
+          <% loan.loan_weapons.each do |loan_W| %>
+            <li class="list-group-item">
+              <p>Numero de Srie: <%= loan_W.weapon.serialNumber %></p>
+              <p>Modelo: <%= loan_W.weapon.model %></p>
+              <p>Fabricante: <%= loan_W.weapon.factory %></p>
+            </li>
+          <% end %>
           <li class="list-group-item">Munição X quantidade Y</li>
           
           <li class="list-group-item">Acessorio X quantidade Y</li>
@@ -29,5 +33,5 @@
         </div>
       </div>
     </div>
-
+  <% end %>
 </div>

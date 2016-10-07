@@ -1,25 +1,36 @@
-<%= form_for([@reserve,@soldier,@weapon,@loan,@loan_weapon]) do |f| %>
-  <% if @loan_weapon.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@loan_weapon.errors.count, "error") %> prohibited this loan_weapon from being saved:</h2>
+<div class="col-md-2"></div>
+<div class="col-md-8">
+  <%= form_for([@reserve,@soldier,@weapon,@loan,@loan_weapon]) do |f| %>
+    <% if @loan_weapon.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@loan_weapon.errors.count, "error") %> prohibited this loan_weapon from being saved:</h2>
 
-      <ul>
-      <% @loan_weapon.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% @loan_weapon.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :loan_id %><br>
+      <%= f.text_field :loan_id %>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <% Weapon.where(garrison: @reserve.garrison).each do |weapon| %>
+          <p><%= f.radio_button :weapon_id, weapon.id %>
+          Modelo: <%= f.label :weapon_id, weapon.model %></p>
+          <p>Fabricante: <%= f.label :weapon_id, weapon.factory %></p>
+        <% end %>
+      </div>
+      <div class="col-md-4"></div>
+      <div class="col-md-4"></div>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :loan_id %><br>
-    <%= f.text_field :loan_id %>
-  </div>
-  <div class="field">
-    <%= f.label :weapon_id %><br>
-    <%= f.text_field :weapon_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

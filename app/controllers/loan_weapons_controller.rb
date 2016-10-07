@@ -17,8 +17,8 @@ class LoanWeaponsController < ApplicationController
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = Soldier.find(params[:soldier_id])
     @loan = Loan.find(params[:loan_id])
-    @loan_weapon = LoanWeapon.new
-    @loan_weapon.loan = @loan
+    @weapons = Weapon.where.not(LoanWeapon.all)
+    @loan_weapon = @loan.loan_weapons.build
   end
 
   # GET /loan_weapons/1/edit
