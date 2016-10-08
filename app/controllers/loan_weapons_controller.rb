@@ -17,8 +17,11 @@ class LoanWeaponsController < ApplicationController
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = Soldier.find(params[:soldier_id])
     @loan = Loan.find(params[:loan_id])
-    @weapons = Weapon.where.not(LoanWeapon.all)
+    
     @loan_weapon = @loan.loan_weapons.build
+    loWeapons_ids = LoanWeapon.where(reserve_id: @reserve).collect {|p| p.weapon_id}
+
+    @weapons = Weapon.where(garrison: @reserve.garrison).where.not(id: loWeapons_ids)
   end
 
   # GET /loan_weapons/1/edit
@@ -32,11 +35,13 @@ class LoanWeaponsController < ApplicationController
     @soldier = Soldier.find(params[:soldier_id])
     @loan = Loan.find(params[:loan_id])
     @loan_weapon = LoanWeapon.new(loan_weapon_params)
+    @loan_weapon.loan = @loan
+    @loan_weapon.reserve_id = @reserve.id
 
     respond_to do |format|
       if @loan_weapon.save
-        format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan weapon was successfully created.' }
-        format.json { render :show, status: :created, location: reserf_soldier_loan_path(@reserve,@soldier,@loan) }
+        format.html { redirect_to reserf_soldier_loans_path(@reserve,@soldier,@loan), notice: 'Loan weapon was successfully created.' }
+        format.json { render :show, status: :created, location: reserf_soldier_loans_path(@reserve,@soldier,@loan) }
       else
         format.html { render :new }
         format.json { render json: @loan_weapon.errors, status: :unprocessable_entity }
@@ -76,6 +81,6 @@ class LoanWeaponsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_weapon_params
-      params.require(:loan_weapon).permit(:loan_id, :weapon_id)
+      params.require(:loan_weapon).permit(:weapon_id)
     end
 end
