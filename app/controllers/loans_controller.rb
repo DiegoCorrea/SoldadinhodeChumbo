@@ -7,7 +7,11 @@ class LoansController < ApplicationController
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = Soldier.where(id: params[:soldier_id]).first
     @loans = Loan.where(soldier: @soldier)
-    @loan_weapons = LoanWeapon.all
+    if !@loans.order('updated_at DESC').first.loan_weapons.empty?
+      @active = true
+    else
+      @active = false
+    end
   end
 
   # GET /loans/1
