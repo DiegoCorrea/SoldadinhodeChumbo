@@ -1,32 +1,15 @@
-<p id="notice"><%= notice %></p>
+<div class="text-md-right"><%= link_to new_reserf_garrison_weapon_path(@reserve, @garrison) do %><span class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></span><% end %></div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Numero de Serie</th>
-      <th>Modelo</th>
-      <th>Fabricante</th>
-      <th class="text-md-center"><%= link_to new_reserf_garrison_weapon_path(@reserve, @garrison) do %><span class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></span><% end %></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @weapons.each do |weapon| %>
-      <tr>
-        <td><%= weapon.serialNumber %></td>
-        <td><%= weapon.model %></td>
-        <td><%= weapon.factory %></td>
-        <td>
-          <%= link_to reserf_garrison_weapon_path(@reserve, @garrison, weapon) do %><div class="btn btn-info"><i class="fa fa-info" aria-hidden="true"></i></div><% end %>
-        </td>
-        <td>
-          <%= link_to edit_reserf_garrison_weapon_path(@reserve, @garrison, weapon) do %><div class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div><% end %>
-        </td>
-        <td>
-          <%= link_to reserf_garrison_weapon_path(@reserve, @garrison, weapon), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></div><% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-  
+<% @weapons.each do |weapon| %>
+  <div class="card">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><strong>Nº de serie: </strong><%= weapon.serialNumber %></li>
+      <li class="list-group-item"><strong>Modelo: </strong><%= weapon.model %></li>
+      <li class="list-group-item"><strong>Fabrica: </strong><%= weapon.factory %></li>
+    </ul>
+    <div class="card-block">
+      <%= link_to edit_reserf_garrison_weapon_path(@reserve, @garrison, weapon), class: "col-md-6" do %><div class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div><% end %>
+      <%= link_to reserf_garrison_weapon_path(@reserve, @garrison, weapon), method: :delete, data: { confirm: 'Are you sure?' }, class: "col-md-6"  do %> <div class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></div><% end %>
+    </div>
+  </div>
+<% end %>

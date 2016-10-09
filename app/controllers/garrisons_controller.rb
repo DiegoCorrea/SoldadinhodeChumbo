@@ -7,9 +7,9 @@ class GarrisonsController < ApplicationController
     @reserve = Reserve.where(id: params[:reserf_id]).first
     
     @garrison = @reserve.garrison
-    @weapons = Weapon.where(garrison: @garrison)
-    @munitions = Munition.where(garrison: @garrison)
-    @accessories = Accessory.where(garrison: @garrison)
+    @weapons = Weapon.where(garrison: @garrison).order('updated_at DESC')
+    @munitions = Munition.where(garrison: @garrison).order('updated_at DESC')
+    @accessories = Accessory.where(garrison: @garrison).order('updated_at DESC')
   end
 
   # DELETE /garrisons/1
