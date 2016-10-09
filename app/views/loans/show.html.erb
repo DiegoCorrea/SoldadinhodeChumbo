@@ -10,10 +10,38 @@
   <strong>Soldier:</strong>
   <%= @loan.soldier.warName %>
 </p>
-<div class="col-md-2"></div>
-<div class="col-md-8">
+
 	<div class="col-md-4">
-		<%=link_to "Emprestimo de arma", new_reserf_soldier_loan_loan_weapon_path(@reserve,@soldier,@loan)%>
+		<div class="text-md-right"><%= link_to new_reserf_soldier_loan_loan_weapon_path(@reserve,@soldier,@loan) do %><span class="btn btn-success"><i class="fa fa-rocket" aria-hidden="true"></i></span><% end %></div>
+
+		<% if !@loan.loan_weapons.empty?%>
+			<div class="card">
+	      <div class="card-block">
+	        <h4 class="card-title">Armamento</h4>
+	      </div>
+	      <ul class="list-group list-group-flush">
+	        <% @loan.loan_weapons.each do |loan_W| %>
+	          <li class="list-group-item">
+	            <p>Nº de Serie: <%= loan_W.weapon.serialNumber %></p>
+	            <p>Modelo: <%= loan_W.weapon.model %></p>
+	            <p>Fabricante: <%= loan_W.weapon.factory %></p>
+	            <p>            	
+	            	<%= link_to reserf_soldier_loan_loan_weapon_path(@reserve,@soldier,@loan,loan_W), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></div><% end %>
+	            </p>
+
+	          </li>
+	        <% end %>        
+	      </ul>
+	      <div class="card-block">
+	        <p><a href="#" class="card-link">Cautelar +</a></p>
+	        <p><a href="#" class="card-link">Devolver por item</a></p>
+	        
+	      </div>
+	      <div class="card-footer text-muted">
+	        <%= @loan.updated_at.time %>
+	      </div>
+	    </div>
+		<% end %>
 	</div>
 	<div class="col-md-4">
 		
@@ -21,4 +49,3 @@
 	<div class="col-md-4">
 		
 	</div>
-</div>
