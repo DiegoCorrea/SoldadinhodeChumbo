@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :loan_weapon_logs
   root 'welcome#index'
 
   resources :reserves do

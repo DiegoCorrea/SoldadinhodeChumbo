@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <%= link_to reserf_path(@reserve)do%>
   <p>
     <div class="btn"><i class="fa fa-backward" aria-hidden="true"></i></div>
@@ -7,7 +6,7 @@
 <% end %>
 
 <h2>Lista de Soldados da Reserva: <%= @reserve.initials %></h2>
-
+<p id="notice" class="text-md-center"><%= notice %></p>
 <table>
   <thead>
     <tr>
