@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :loan_weapon_logs
   root 'welcome#index'
 
   resources :reserves do
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
       resources :loans do
         get :destroy_all
         resources :loan_weapons
+        resources :loan_weapon_logs
       end
     end
     
