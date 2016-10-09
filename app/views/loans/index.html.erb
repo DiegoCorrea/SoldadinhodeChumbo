@@ -1,10 +1,10 @@
 <h1 class="text-md-center">Emprestimos do soldado</h1>
 <p id="notice" class="text-md-center"><%= notice %></p>
 <div class="row">
-  <% if !@active %>
+  <% if @loanActive.empty? %>
     <div class="text-md-right"><%= link_to new_reserf_soldier_loan_path(@reserve, @soldier) do %><span class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></span><% end %></div>
   <% end %>
-  <% @loans.each do |loan|%>
+  <% @loanActive.each do |loan|%>
     <div class="col-md-4">
       <div class="card">
         <div class="card-block">
@@ -13,6 +13,31 @@
         </div>
         <ul class="list-group list-group-flush">
           <% loan.loan_weapons.each do |loan_W| %>
+            <li class="list-group-item">
+              <p>Nº de Serie: <%= loan_W.weapon.serialNumber %></p>
+              <p>Modelo: <%= loan_W.weapon.model %></p>
+              <p>Fabricante: <%= loan_W.weapon.factory %></p>
+            </li>
+          <% end %>
+          <li class="list-group-item">Munição X quantidade Y</li>
+          
+          <li class="list-group-item">Acessorio X quantidade Y</li>
+        </ul>
+        <div class="card-footer text-muted">
+          <%= loan.updated_at.time %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="row">
+  <h2 class="text-md-center">Historico de Cautelas</h2>
+  <% @loansLog.each do |loan|%>
+    <div class="col-md-4">
+      <div class="card">
+        <ul class="list-group list-group-flush">
+          <% loan.loan_weapon_logs.each do |loan_W| %>
             <li class="list-group-item">
               <p>Nº de Serie: <%= loan_W.weapon.serialNumber %></p>
               <p>Modelo: <%= loan_W.weapon.model %></p>

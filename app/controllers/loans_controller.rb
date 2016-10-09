@@ -7,6 +7,10 @@ class LoansController < ApplicationController
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = Soldier.where(id: params[:soldier_id]).first
     @loans = Loan.where(soldier: @soldier)
+
+    @loanActive = Loan.where(soldier: @soldier).where(active: true)
+    @loansLog = Loan.where(soldier: @soldier).where(active: false)
+
     @active = false
     if !@loans.empty?
       if !@loans.order('updated_at DESC').first.loan_weapons.empty?
@@ -37,6 +41,7 @@ class LoansController < ApplicationController
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = Soldier.find(params[:soldier_id])
     @loan = @soldier.loans.build(loan_params)
+    @loan.active = true
 
     respond_to do |format|
       if @loan.save
@@ -65,13 +70,6 @@ class LoansController < ApplicationController
 
   # DELETE /loans/1
   # DELETE /loans/1.json
-  def destroy
-    @loan.destroy
-    respond_to do |format|
-      format.html { redirect_to loans_url, notice: 'Loan was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
 
   def destroy_all
     @reserve = Reserve.where(id: params[:reserf_id]).first
@@ -82,7 +80,8 @@ class LoansController < ApplicationController
     end
     @loan = Loan.find(params[:loan_id])
     if @loan.loan_weapons.empty?
-      @loan.destroy      
+      @loan.active = false
+      @loan.save
     end
 
     respond_to do |format|

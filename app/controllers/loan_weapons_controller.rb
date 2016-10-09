@@ -38,8 +38,12 @@ class LoanWeaponsController < ApplicationController
     @loan_weapon.loan = @loan
     @loan_weapon.reserve_id = @reserve.id
 
+    #add to log
+    @loan_weapon_log = LoanWeaponLog.new(loan_weapon_params)
+    @loan_weapon_log.loan = @loan
+    @loan_weapon_log.reserve_id = @reserve.id
     respond_to do |format|
-      if @loan_weapon.save
+      if @loan_weapon.save and @loan_weapon_log.save
         format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan weapon was successfully created.' }
         format.json { render :show, status: :created, location: reserf_soldier_loan_path(@reserve,@soldier,@loan) }
       else
@@ -68,7 +72,8 @@ class LoanWeaponsController < ApplicationController
   def destroy
     @loan_weapon.destroy
     if @loan.loan_weapons.empty?
-      @loan.destroy
+      @loan.active = false
+      @loan.save
       respond_to do |format|
         format.html { redirect_to reserf_soldier_loans_path(@reserve,@soldier), notice: 'Toda Cautela devolvida' }
         format.json { head :no_content }
