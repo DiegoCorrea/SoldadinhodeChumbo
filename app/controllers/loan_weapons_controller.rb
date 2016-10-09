@@ -81,22 +81,6 @@ class LoanWeaponsController < ApplicationController
     end
   end
 
-  def destroy_all
-    @loan = Loan.find(params[:loan_id])
-
-    @loan.loan_weapons.each do |loan_weapon|
-      loan_weapon.destroy
-    end
-    if @loan.loan_weapons.empty?
-      @loan.destroy      
-    end
-
-    respond_to do |format|
-      format.html { redirect_to loan_weapons_url, notice: 'Todas as Armas devolvidas com sucesso' }
-      format.json { head :no_content }
-    end
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_loan_weapon

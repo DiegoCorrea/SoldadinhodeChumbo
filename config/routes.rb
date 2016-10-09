@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :reserves do
     resources :soldiers do
       resources :loans do
+        get :destroy_all
         resources :loan_weapons
       end
     end
