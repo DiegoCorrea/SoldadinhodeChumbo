@@ -1,7 +1,7 @@
 class Loan < ActiveRecord::Base
   belongs_to :soldier
 
-  has_many :loan_weapons, :dependent => :destroy
+  has_many :loan_weapons
   #has_many :loan_accessories
   #has_many :loan_munitions
   has_many :weapons, through: :loan_weapons
