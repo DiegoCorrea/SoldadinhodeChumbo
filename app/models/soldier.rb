@@ -7,6 +7,6 @@ class Soldier < ActiveRecord::Base
   has_many :loans
   
 	has_many :loan_weapons, through: :loans
-	#has_many :loan_accessories, through: :loans, :dependent => :destroy
-	#has_many :loan_munitions, through: :loans, :dependent => :destroy
+	has_many :loan_munitions, through: :loans
+	#has_many :loan_accessories, through: :loans	
 end
