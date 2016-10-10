@@ -97,6 +97,7 @@ class LoansController < ApplicationController
     @loan.loan_munitions.each do |loan_munition|
       munition = Munition.find(loan_munition.munition)
       munition.amount += loan_munition.amount
+      munition.save
       loan_munition.destroy
     end
     @loan = Loan.find(params[:loan_id])
