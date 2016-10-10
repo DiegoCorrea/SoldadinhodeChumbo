@@ -1,1 +1,0 @@
-json.array! @loan_munition_logs, partial: 'loan_munition_logs/loan_munition_log', as: :loan_munition_log

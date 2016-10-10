@@ -37,11 +37,15 @@ class LoanMunitionsController < ApplicationController
     @loan_munition.loan = @loan
     @loan_munition.reserve = @reserve
 
+    @loan_munition_log = @loan.loan_munition_logs.build(loan_munition_params)
+    @loan_munition_log.loan = @loan
+    @loan_munition_log.reserve = @reserve
+
     @munition = Munition.find(@loan_munition.munition)
     @munition.amount -= @loan_munition.amount
 
     respond_to do |format|
-      if @loan_munition.save and @munition.save
+      if @loan_munition.save and @munition.save and @loan_munition_log.save
         format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan munition was successfully created.' }
         format.json { render :show, status: :created, location: reserf_soldier_loan_path(@reserve,@soldier,@loan) }
       else

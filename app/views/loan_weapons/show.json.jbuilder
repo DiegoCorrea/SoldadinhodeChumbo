@@ -1,1 +1,0 @@
-json.partial! "loan_weapons/loan_weapon", loan_weapon: @loan_weapon

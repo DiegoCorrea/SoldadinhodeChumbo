@@ -19,7 +19,13 @@
               <p>Fabricante: <%= loan_W.weapon.factory %></p>
             </li>
           <% end %>
-          <li class="list-group-item">Munição X quantidade Y</li>
+          <% loan.loan_munitions.each do |loan_M| %>
+            <li class="list-group-item">
+              <p>Calibre: <%= loan_M.munition.caliber %></p>
+              <p>Quantidade: <%= loan_M.munition.amount %></p>
+              <p>Descrição: <%= loan_M.munition.description %></p>
+            </li>
+          <% end %>
           
           <li class="list-group-item">Acessorio X quantidade Y</li>
         </ul>
@@ -44,7 +50,13 @@
               <p>Fabricante: <%= loan_W.weapon.factory %></p>
             </li>
           <% end %>
-          <li class="list-group-item">Munição X quantidade Y</li>
+          <% loan.loan_munition_logs.each do |loan_M| %>
+            <li class="list-group-item">
+              <p>Calibre: <%= loan_M.munition.caliber %></p>
+              <p>Quantidade: <%= loan_M.munition.amount %></p>
+              <p>Descrição: <%= loan_M.munition.description %></p>
+            </li>
+          <% end %>
           
           <li class="list-group-item">Acessorio X quantidade Y</li>
         </ul>

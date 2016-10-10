@@ -79,7 +79,7 @@ class LoansController < ApplicationController
       loan_weapon.destroy
     end
     @loan = Loan.find(params[:loan_id])
-    if @loan.loan_weapons.empty?
+    if @loan.loan_weapons.empty? and @loan.loan_munitions.empty?
       @loan.active = false
       @loan.save
     end
@@ -100,7 +100,7 @@ class LoansController < ApplicationController
       loan_munition.destroy
     end
     @loan = Loan.find(params[:loan_id])
-    if @loan.loan_munitions.empty?
+    if @loan.loan_munitions.empty? and @loan.loan_weapons.empty?
       @loan.active = false
       @loan.save
     end

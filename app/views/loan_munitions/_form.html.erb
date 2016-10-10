@@ -17,13 +17,13 @@
   </div>
   </br>
   <div class="row">
-      <% @munitions.each do |munition|%>
-        <div class="col-md-4">
-          <p><%= f.radio_button :munition_id, munition.id %><strong>Calibre: </strong><%= munition.caliber %></p>
-          <p><strong>Descrição: </strong><%= munition.description %></p>
-          <p><strong>Quantidade: </strong><%= munition.amount %></p>
-        </div>
-      <% end %>
+    <% @munitions.each do |munition|%>
+      <div class="col-md-4">
+        <p><%= f.radio_button :munition_id, munition.id %><strong>Calibre: </strong><%= munition.caliber %></p>
+        <p><strong>Descrição: </strong><%= munition.description %></p>
+        <p><strong>Quantidade: </strong><%= munition.amount %></p>
+      </div>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>
