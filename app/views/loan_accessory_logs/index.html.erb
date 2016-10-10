@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Loan Accessory Logs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Loan</th>
+      <th>Accessory</th>
+      <th>Reserve</th>
+      <th>Amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loan_accessory_logs.each do |loan_accessory_log| %>
+      <tr>
+        <td><%= loan_accessory_log.loan %></td>
+        <td><%= loan_accessory_log.accessory %></td>
+        <td><%= loan_accessory_log.reserve %></td>
+        <td><%= loan_accessory_log.amount %></td>
+        <td><%= link_to 'Show', loan_accessory_log %></td>
+        <td><%= link_to 'Edit', edit_loan_accessory_log_path(loan_accessory_log) %></td>
+        <td><%= link_to 'Destroy', loan_accessory_log, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Loan accessory log', new_loan_accessory_log_path %>

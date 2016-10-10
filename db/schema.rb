@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161010020649) do
+ActiveRecord::Schema.define(version: 20161010214205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,32 @@ ActiveRecord::Schema.define(version: 20161010020649) do
   end
 
   add_index "garrisons", ["reserve_id"], name: "index_garrisons_on_reserve_id", using: :btree
+
+  create_table "loan_accessories", force: :cascade do |t|
+    t.integer  "loan_id"
+    t.integer  "accessory_id"
+    t.integer  "reserve_id"
+    t.integer  "amount"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "loan_accessories", ["accessory_id"], name: "index_loan_accessories_on_accessory_id", using: :btree
+  add_index "loan_accessories", ["loan_id"], name: "index_loan_accessories_on_loan_id", using: :btree
+  add_index "loan_accessories", ["reserve_id"], name: "index_loan_accessories_on_reserve_id", using: :btree
+
+  create_table "loan_accessory_logs", force: :cascade do |t|
+    t.integer  "loan_id"
+    t.integer  "accessory_id"
+    t.integer  "reserve_id"
+    t.integer  "amount"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "loan_accessory_logs", ["accessory_id"], name: "index_loan_accessory_logs_on_accessory_id", using: :btree
+  add_index "loan_accessory_logs", ["loan_id"], name: "index_loan_accessory_logs_on_loan_id", using: :btree
+  add_index "loan_accessory_logs", ["reserve_id"], name: "index_loan_accessory_logs_on_reserve_id", using: :btree
 
   create_table "loan_munition_logs", force: :cascade do |t|
     t.integer  "loan_id"
