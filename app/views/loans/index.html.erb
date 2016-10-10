@@ -1,4 +1,4 @@
-<h1 class="text-md-center">Emprestimos do soldado</h1>
+<h1 class="text-md-center">Cautelas do soldado</h1>
 <p id="notice" class="text-md-center"><%= notice %></p>
 <div class="row">
   <% if @loanActive.empty? %>
@@ -38,32 +38,34 @@
 </div>
 
 <div class="row">
-  <h2 class="text-md-center">Historico de Cautelas</h2>
-  <% @loansLog.each do |loan|%>
-    <div class="col-md-4">
-      <div class="card">
-        <ul class="list-group list-group-flush">
-          <% loan.loan_weapon_logs.each do |loan_W| %>
-            <li class="list-group-item">
-              <p>Nº de Serie: <%= loan_W.weapon.serialNumber %></p>
-              <p>Modelo: <%= loan_W.weapon.model %></p>
-              <p>Fabricante: <%= loan_W.weapon.factory %></p>
-            </li>
-          <% end %>
-          <% loan.loan_munition_logs.each do |loan_M| %>
-            <li class="list-group-item">
-              <p>Calibre: <%= loan_M.munition.caliber %></p>
-              <p>Quantidade: <%= loan_M.munition.amount %></p>
-              <p>Descrição: <%= loan_M.munition.description %></p>
-            </li>
-          <% end %>
-          
-          <li class="list-group-item">Acessorio X quantidade Y</li>
-        </ul>
-        <div class="card-footer text-muted">
-          <%= loan.updated_at.time %>
+  <% if !@loansLog.empty?%>
+    <h2 class="text-md-center">Historico de Cautelas</h2>
+    <% @loansLog.each do |loan|%>
+      <div class="col-md-4">
+        <div class="card">
+          <ul class="list-group list-group-flush">
+            <% loan.loan_weapon_logs.each do |loan_W| %>
+              <li class="list-group-item">
+                <p>Nº de Serie: <%= loan_W.weapon.serialNumber %></p>
+                <p>Modelo: <%= loan_W.weapon.model %></p>
+                <p>Fabricante: <%= loan_W.weapon.factory %></p>
+              </li>
+            <% end %>
+            <% loan.loan_munition_logs.each do |loan_M| %>
+              <li class="list-group-item">
+                <p>Calibre: <%= loan_M.munition.caliber %></p>
+                <p>Quantidade: <%= loan_M.munition.amount %></p>
+                <p>Descrição: <%= loan_M.munition.description %></p>
+              </li>
+            <% end %>
+            
+            <li class="list-group-item">Acessorio X quantidade Y</li>
+          </ul>
+          <div class="card-footer text-muted">
+            <%= loan.updated_at.time %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>

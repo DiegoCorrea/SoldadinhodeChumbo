@@ -12,6 +12,12 @@
       </ul>
     </div>
   <% end %>
+  <div class="text-md-center">
+    <p><strong>Tem certeza que deseja iniciar uma cautela?</strong></p>
+    <p><strong>Soldado: <%= @soldier.warName%></strong></p>
+    <p><strong>Função: <%= @soldier.function%></strong></p>
+    <p><strong>No dia: <%= DateTime.now.day.to_s + "/" + DateTime.now.month.to_s + "/" +DateTime.now.year.to_s%> as <%= Time.now.to_formatted_s(:time) %></strong></p>
+  </div>
 
   <div class="actions text-md-center">
     <%= f.submit "Abrir emprestimo", class: "btn btn-success" %>
