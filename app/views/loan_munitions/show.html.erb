@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Loan:</strong>
+  <%= @loan_munition.loan %>
+</p>
+
+<p>
+  <strong>Munition:</strong>
+  <%= @loan_munition.munition %>
+</p>
+
+<p>
+  <strong>Reserve:</strong>
+  <%= @loan_munition.reserve %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @loan_munition.amount %>
+</p>
+
+<%= link_to 'Edit', edit_loan_munition_path(@loan_munition) %> |
+<%= link_to 'Back', loan_munitions_path %>

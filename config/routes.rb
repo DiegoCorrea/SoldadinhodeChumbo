@@ -8,6 +8,8 @@ Rails.application.routes.draw do
         get :destroy_all
         resources :loan_weapons
         resources :loan_weapon_logs
+        resources :loan_munition_logs
+        resources :loan_munitions
       end
     end
     

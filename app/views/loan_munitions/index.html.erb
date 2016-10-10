@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Loan Munitions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Loan</th>
+      <th>Munition</th>
+      <th>Reserve</th>
+      <th>Amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @loan_munitions.each do |loan_munition| %>
+      <tr>
+        <td><%= loan_munition.loan %></td>
+        <td><%= loan_munition.munition %></td>
+        <td><%= loan_munition.reserve %></td>
+        <td><%= loan_munition.amount %></td>
+        <td><%= link_to 'Show', loan_munition %></td>
+        <td><%= link_to 'Edit', edit_loan_munition_path(loan_munition) %></td>
+        <td><%= link_to 'Destroy', loan_munition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Loan munition', new_loan_munition_path %>
