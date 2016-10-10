@@ -5,8 +5,10 @@ class Loan < ActiveRecord::Base
   has_many :loan_weapon_logs
   has_many :loan_munitions
   has_many :loan_munition_logs
-  #has_many :loan_accessories
+  has_many :loan_accessories
+  has_many :loan_accessory_logs
 
   has_many :weapons, through: :loan_weapons
-  has_many :weapons, through: :loan_munitions
+  has_many :munitions, through: :loan_munitions
+  has_many :accessories, through: :loan_accessories
 end
