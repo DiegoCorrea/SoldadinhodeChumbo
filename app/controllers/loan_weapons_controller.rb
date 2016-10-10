@@ -4,7 +4,6 @@ class LoanWeaponsController < ApplicationController
   # GET /loan_weapons
   # GET /loan_weapons.json
   def index
-    @loan_weapons = LoanWeapon.all
   end
 
   # GET /loan_weapons/1

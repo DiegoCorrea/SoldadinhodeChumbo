@@ -4,7 +4,6 @@ class LoanMunitionsController < ApplicationController
   # GET /loan_munitions
   # GET /loan_munitions.json
   def index
-    @loan_munitions = LoanMunition.all
   end
 
   # GET /loan_munitions/1
@@ -14,7 +13,13 @@ class LoanMunitionsController < ApplicationController
 
   # GET /loan_munitions/new
   def new
-    @loan_munition = LoanMunition.new
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @soldier = Soldier.find(params[:soldier_id])
+    @loan = Loan.find(params[:loan_id])
+    
+    @loan_munition = @loan.loan_munitions.build
+
+    @munitions = Munition.where(garrison: @reserve.garrison).where.not("amount <= ?",0)
   end
 
   # GET /loan_munitions/1/edit
@@ -24,12 +29,21 @@ class LoanMunitionsController < ApplicationController
   # POST /loan_munitions
   # POST /loan_munitions.json
   def create
-    @loan_munition = LoanMunition.new(loan_munition_params)
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @soldier = Soldier.find(params[:soldier_id])
+    @loan = Loan.find(params[:loan_id])
+    
+    @loan_munition = @loan.loan_munitions.build(loan_munition_params)
+    @loan_munition.loan = @loan
+    @loan_munition.reserve = @reserve
+
+    @munition = Munition.find(@loan_munition.munition)
+    @munition.amount -= @loan_munition.amount
 
     respond_to do |format|
-      if @loan_munition.save
-        format.html { redirect_to @loan_munition, notice: 'Loan munition was successfully created.' }
-        format.json { render :show, status: :created, location: @loan_munition }
+      if @loan_munition.save and @munition.save
+        format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan munition was successfully created.' }
+        format.json { render :show, status: :created, location: reserf_soldier_loan_path(@reserve,@soldier,@loan) }
       else
         format.html { render :new }
         format.json { render json: @loan_munition.errors, status: :unprocessable_entity }
@@ -42,8 +56,8 @@ class LoanMunitionsController < ApplicationController
   def update
     respond_to do |format|
       if @loan_munition.update(loan_munition_params)
-        format.html { redirect_to @loan_munition, notice: 'Loan munition was successfully updated.' }
-        format.json { render :show, status: :ok, location: @loan_munition }
+        format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan munition was successfully updated.' }
+        format.json { render :show, status: :ok, location: reserf_soldier_loan_path(@reserve,@soldier,@loan) }
       else
         format.html { render :edit }
         format.json { render json: @loan_munition.errors, status: :unprocessable_entity }
@@ -54,9 +68,12 @@ class LoanMunitionsController < ApplicationController
   # DELETE /loan_munitions/1
   # DELETE /loan_munitions/1.json
   def destroy
+    @munition = Munition.find(@loan_munition.munition)
+    @munition.amount += @loan_munition.amount
+    @munition.save
     @loan_munition.destroy
     respond_to do |format|
-      format.html { redirect_to loan_munitions_url, notice: 'Loan munition was successfully destroyed.' }
+      format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan munition was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +81,14 @@ class LoanMunitionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_loan_munition
+      @reserve = Reserve.where(id: params[:reserf_id]).first
+      @soldier = Soldier.find(params[:soldier_id])
+      @loan = Loan.find(params[:loan_id])
       @loan_munition = LoanMunition.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_munition_params
-      params.require(:loan_munition).permit(:loan_id, :munition_id, :reserve_id, :amount)
+      params.require(:loan_munition).permit(:munition_id, :amount)
     end
 end

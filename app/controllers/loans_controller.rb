@@ -90,6 +90,27 @@ class LoansController < ApplicationController
     end
   end
 
+  def giver_back_all_munitions
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @soldier = Soldier.find(params[:soldier_id])
+    @loan = Loan.find(params[:loan_id])
+    @loan.loan_munitions.each do |loan_munition|
+      munition = Munition.find(loan_munition.munition)
+      munition.amount += loan_munition.amount
+      loan_munition.destroy
+    end
+    @loan = Loan.find(params[:loan_id])
+    if @loan.loan_munitions.empty?
+      @loan.active = false
+      @loan.save
+    end
+
+    respond_to do |format|
+      format.html { redirect_to reserf_soldier_loans_path(@reserve,@soldier), notice: 'Todas as munições foram devolvidas com sucesso' }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_loan

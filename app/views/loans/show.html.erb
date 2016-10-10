@@ -54,7 +54,7 @@
 	        <% @loan.loan_munitions.each do |loan_M| %>
 	          <li class="list-group-item">
 	            <p>Descrição: <%= loan_M.munition.description %></p>
-	            <p>Quantidade: <%= loan_W.anount %></p>
+	            <p>Quantidade: <%= loan_M.amount %></p>
 	            <p>            	
 	            	<%= link_to reserf_soldier_loan_loan_munition_path(@reserve,@soldier,@loan,loan_M), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></div><% end %>
 	            </p>
@@ -63,7 +63,7 @@
 	        <% end %>        
 	      </ul>
 	      <div class="card-block">
-					<p><%= link_to "Devolver Tudo", reserf_soldier_loan_destroy_all_path(@reserve,@soldier,@loan), class: "card-link", data: { confirm: 'Realmente deseja devolver tudo?' }%></p>	      
+					<p><%= link_to "Devolver Tudo", reserf_soldier_loan_giver_back_all_munitions_path(@reserve,@soldier,@loan), class: "card-link", data: { confirm: 'Realmente deseja devolver tudo?' }%></p>	      
 				</div>
 	      <div class="card-footer text-muted">
 	        <%= @loan.updated_at.time %>
