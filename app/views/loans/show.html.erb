@@ -26,14 +26,14 @@
 	            <p>Modelo: <%= loan_W.weapon.model %></p>
 	            <p>Fabricante: <%= loan_W.weapon.factory %></p>
 	            <p>            	
-	            	<%= link_to reserf_soldier_loan_loan_weapon_path(@reserve,@soldier,@loan,loan_W), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-danger"><i class="fa fa-exchange" aria-hidden="true"></i></div><% end %>
+	            	<%= link_to reserf_soldier_loan_loan_weapon_path(@reserve,@soldier,@loan,loan_W), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-warning"><i class="fa fa-exchange" aria-hidden="true"></i></div><% end %>
 	            </p>
 
 	          </li>
 	        <% end %>        
 	      </ul>
 	      <div class="card-block">
-					<p><%= link_to "Devolver Tudo", reserf_soldier_loan_destroy_all_path(@reserve,@soldier,@loan), class: "card-link", data: { confirm: 'Realmente deseja devolver tudo?' }%></p>	      
+					<p><%= link_to "Devolver Tudo", reserf_soldier_loan_give_back_all_weapons_path(@reserve,@soldier,@loan), class: "card-link", data: { confirm: 'Realmente deseja devolver tudo?' }%></p>	      
 				</div>
 	      <div class="card-footer text-muted">
 	        <%= @loan.updated_at.time %>
@@ -57,14 +57,14 @@
 	            <p>Descrição: <%= loan_M.munition.caliber %></p>
 	            <p>Quantidade: <%= loan_M.amount %></p>
 	            <p>            	
-	            	<%= link_to reserf_soldier_loan_loan_munition_path(@reserve,@soldier,@loan,loan_M), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-danger"><i class="fa fa-exchange" aria-hidden="true"></i></div><% end %>
+	            	<%= link_to reserf_soldier_loan_loan_munition_path(@reserve,@soldier,@loan,loan_M), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-warning"><i class="fa fa-exchange" aria-hidden="true"></i></div><% end %>
 	            </p>
 
 	          </li>
 	        <% end %>        
 	      </ul>
 	      <div class="card-block">
-					<p><%= link_to "Devolver Tudo", reserf_soldier_loan_giver_back_all_munitions_path(@reserve,@soldier,@loan), class: "card-link", data: { confirm: 'Realmente deseja devolver tudo?' }%></p>	      
+					<p><%= link_to "Devolver Tudo", reserf_soldier_loan_give_back_all_munitions_path(@reserve,@soldier,@loan), class: "card-link", data: { confirm: 'Realmente deseja devolver tudo?' }%></p>	      
 				</div>
 	      <div class="card-footer text-muted">
 	        <%= @loan.updated_at.time %>
@@ -86,14 +86,14 @@
 	            <p>Descrição: <%= loan_A.accessory.description %></p>
 	            <p>Quantidade: <%= loan_A.amount %></p>
 	            <p>            	
-	            	<%= link_to reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan,loan_A), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-danger"><i class="fa fa-exchange" aria-hidden="true"></i></div><% end %>
+	            	<%= link_to reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan,loan_A), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-warning"><i class="fa fa-exchange" aria-hidden="true"></i></div><% end %>
 	            </p>
 
 	          </li>
 	        <% end %>        
 	      </ul>
 	      <div class="card-block">
-					<p><%= link_to "Devolver Tudo", reserf_soldier_loan_giver_back_all_accessories_path(@reserve,@soldier,@loan), class: "card-link", data: { confirm: 'Realmente deseja devolver tudo?' }%></p>	      
+					<p><%= link_to "Devolver Tudo", reserf_soldier_loan_give_back_all_accessories_path(@reserve,@soldier,@loan), class: "card-link", data: { confirm: 'Realmente deseja devolver tudo?' }%></p>	      
 				</div>
 	      <div class="card-footer text-muted">
 	        <%= @loan.updated_at.time %>

@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   resources :reserves do
     resources :soldiers do
       resources :loans do
-        get :destroy_all
-        get :giver_back_all_munitions
-        get :giver_back_all_accessories
+        get :give_back_all_weapons
+        get :give_back_all_munitions
+        get :give_back_all_accessories
         resources :loan_weapons
         resources :loan_weapon_logs
         resources :loan_munition_logs

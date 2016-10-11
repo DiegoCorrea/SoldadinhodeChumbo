@@ -71,7 +71,7 @@ class LoansController < ApplicationController
   # DELETE /loans/1
   # DELETE /loans/1.json
 
-  def destroy_all
+  def give_back_all_weapons
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = Soldier.find(params[:soldier_id])
     @loan = Loan.find(params[:loan_id])
@@ -90,7 +90,7 @@ class LoansController < ApplicationController
     end
   end
 
-  def giver_back_all_munitions
+  def give_back_all_munitions
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = Soldier.find(params[:soldier_id])
     @loan = Loan.find(params[:loan_id])
@@ -112,7 +112,7 @@ class LoansController < ApplicationController
     end
   end
 
-  def giver_back_all_accessories
+  def give_back_all_accessories
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = Soldier.find(params[:soldier_id])
     @loan = Loan.find(params[:loan_id])
