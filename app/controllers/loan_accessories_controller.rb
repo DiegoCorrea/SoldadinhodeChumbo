@@ -1,12 +1,5 @@
 class LoanAccessoriesController < ApplicationController
   before_action :set_loan_accessory, only: [:show, :edit, :update, :destroy]
-
-  # GET /loan_accessories
-  # GET /loan_accessories.json
-  def index
-    @loan_accessories = LoanAccessory.all
-  end
-
   # GET /loan_accessories/1
   # GET /loan_accessories/1.json
   def show
@@ -14,7 +7,12 @@ class LoanAccessoriesController < ApplicationController
 
   # GET /loan_accessories/new
   def new
-    @loan_accessory = LoanAccessory.new
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @soldier = Soldier.find(params[:soldier_id])
+    @loan = Loan.find(params[:loan_id])
+
+    @loan_accessory = @loan.loan_accessories.build
+    @accessories = Accessory.where(garrison: @reserve.garrison).where.not("amount <= ?",0)
   end
 
   # GET /loan_accessories/1/edit
@@ -24,15 +22,35 @@ class LoanAccessoriesController < ApplicationController
   # POST /loan_accessories
   # POST /loan_accessories.json
   def create
-    @loan_accessory = LoanAccessory.new(loan_accessory_params)
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @soldier = Soldier.find(params[:soldier_id])
+    @loan = Loan.find(params[:loan_id])
 
-    respond_to do |format|
-      if @loan_accessory.save
-        format.html { redirect_to @loan_accessory, notice: 'Loan accessory was successfully created.' }
-        format.json { render :show, status: :created, location: @loan_accessory }
-      else
-        format.html { render :new }
-        format.json { render json: @loan_accessory.errors, status: :unprocessable_entity }
+    @loan_accessory = @loan.loan_accessories.build(loan_accessory_params)
+    @loan_accessory.loan = @loan
+    @loan_accessory.reserve = @reserve
+
+    @loan_accessory_log = @loan.loan_accessory_logs.build(loan_accessory_params)
+    @loan_accessory_log.loan = @loan
+    @loan_accessory_log.reserve = @reserve
+
+    @accessory = Accessory.find(@loan_accessory.accessory)
+    if @accessory.amount >= @loan_accessory.amount
+      @accessory.amount -= @loan_accessory.amount
+
+      respond_to do |format|
+        if @loan_accessory.save and @loan_accessory_log.save and @accessory.save
+          format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan accessory was successfully created.' }
+          format.json { render :show, status: :created, location: reserf_soldier_loan_path(@reserve,@soldier,@loan) }
+        else
+          format.html { render :new }
+          format.json { render json: @loan_accessory.errors, status: :unprocessable_entity }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to new_reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan), notice: 'Não se pode pegar mais acessorios do que tem na Reserva.' }
+        format.json { render :show, status: :created, location: new_reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan) }
       end
     end
   end
@@ -42,8 +60,8 @@ class LoanAccessoriesController < ApplicationController
   def update
     respond_to do |format|
       if @loan_accessory.update(loan_accessory_params)
-        format.html { redirect_to @loan_accessory, notice: 'Loan accessory was successfully updated.' }
-        format.json { render :show, status: :ok, location: @loan_accessory }
+        format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan accessory was successfully updated.' }
+        format.json { render :show, status: :ok, location: reserf_soldier_loan_path(@reserve,@soldier,@loan) }
       else
         format.html { render :edit }
         format.json { render json: @loan_accessory.errors, status: :unprocessable_entity }
@@ -54,9 +72,12 @@ class LoanAccessoriesController < ApplicationController
   # DELETE /loan_accessories/1
   # DELETE /loan_accessories/1.json
   def destroy
+    @accessory = Accessory.find(@loan_accessory.accessory)
+    @accessory.amount += @loan_accessory.amount
+    @accessory.save
     @loan_accessory.destroy
     respond_to do |format|
-      format.html { redirect_to loan_accessories_url, notice: 'Loan accessory was successfully destroyed.' }
+      format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan accessory was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +85,14 @@ class LoanAccessoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_loan_accessory
+      @reserve = Reserve.where(id: params[:reserf_id]).first
+      @soldier = Soldier.find(params[:soldier_id])
+      @loan = Loan.find(params[:loan_id])
       @loan_accessory = LoanAccessory.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_accessory_params
-      params.require(:loan_accessory).permit(:loan_id, :accessory_id, :reserve_id, :amount)
+      params.require(:loan_accessory).permit(:accessory_id, :amount)
     end
 end

@@ -27,7 +27,12 @@
             </li>
           <% end %>
           
-          <li class="list-group-item">Acessorio X quantidade Y</li>
+          <% loan.loan_accessories.each do |loan_A| %>
+            <li class="list-group-item">
+              <p>Quantidade: <%= loan_A.accessory.amount %></p>
+              <p>Descrição: <%= loan_A.accessory.description %></p>
+            </li>
+          <% end %>
         </ul>
         <div class="card-footer text-muted">
           <%= loan.updated_at.time %>
@@ -59,7 +64,12 @@
               </li>
             <% end %>
             
-            <li class="list-group-item">Acessorio X quantidade Y</li>
+            <% loan.loan_accessory_logs.each do |loan_A| %>
+            <li class="list-group-item">
+              <p>Quantidade: <%= loan_A.accessory.amount %></p>
+              <p>Descrição: <%= loan_A.accessory.description %></p>
+            </li>
+          <% end %>
           </ul>
           <div class="card-footer text-muted">
             <%= loan.updated_at.time %>

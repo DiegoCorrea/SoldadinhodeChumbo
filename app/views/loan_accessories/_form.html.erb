@@ -1,4 +1,5 @@
-<%= form_for(@loan_accessory) do |f| %>
+<p id="notice" class="text-md-center"><%= notice %></p>
+<%= form_for([@reserve,@soldier,@loan,@loan_accessory]) do |f| %>
   <% if @loan_accessory.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@loan_accessory.errors.count, "error") %> prohibited this loan_accessory from being saved:</h2>
@@ -11,21 +12,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :loan_id %><br>
-    <%= f.text_field :loan_id %>
-  </div>
-  <div class="field">
-    <%= f.label :accessory_id %><br>
-    <%= f.text_field :accessory_id %>
-  </div>
-  <div class="field">
-    <%= f.label :reserve_id %><br>
-    <%= f.text_field :reserve_id %>
-  </div>
-  <div class="field">
-    <%= f.label :amount %><br>
+  <div class="row">
+    <strong>Quantidade a ser retirada: </strong>
     <%= f.number_field :amount %>
+  </div>
+  </br>
+  <div class="row">
+    <% @accessories.each do |accessory|%>
+      <div class="col-md-4">
+        <p><%= f.radio_button :accessory_id, accessory.id %><strong>Descrição: </strong><%= accessory.description %></p>
+        <p><strong>Quantidade: </strong><%= accessory.amount %></p>
+      </div>
+    <% end %>
   </div>
   <div class="actions">
     <%= f.submit %>

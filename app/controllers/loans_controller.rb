@@ -79,7 +79,7 @@ class LoansController < ApplicationController
       loan_weapon.destroy
     end
     @loan = Loan.find(params[:loan_id])
-    if @loan.loan_weapons.empty? and @loan.loan_munitions.empty?
+    if @loan.loan_munitions.empty? and @loan.loan_weapons.empty? and @loan.loan_accessories.empty?
       @loan.active = false
       @loan.save
     end
@@ -101,13 +101,35 @@ class LoansController < ApplicationController
       loan_munition.destroy
     end
     @loan = Loan.find(params[:loan_id])
-    if @loan.loan_munitions.empty? and @loan.loan_weapons.empty?
+    if @loan.loan_munitions.empty? and @loan.loan_weapons.empty? and @loan.loan_accessories.empty?
       @loan.active = false
       @loan.save
     end
 
     respond_to do |format|
       format.html { redirect_to reserf_soldier_loans_path(@reserve,@soldier), notice: 'Todas as munições foram devolvidas com sucesso' }
+      format.json { head :no_content }
+    end
+  end
+
+  def giver_back_all_accessories
+    @reserve = Reserve.where(id: params[:reserf_id]).first
+    @soldier = Soldier.find(params[:soldier_id])
+    @loan = Loan.find(params[:loan_id])
+    @loan.loan_accessories.each do |loan_accessory|
+      accessory = Accessory.find(loan_accessory.accessory)
+      accessory.amount += loan_accessory.amount
+      accessory.save
+      loan_accessory.destroy
+    end
+    @loan = Loan.find(params[:loan_id])
+    if @loan.loan_munitions.empty? and @loan.loan_weapons.empty? and @loan.loan_accessories.empty?
+      @loan.active = false
+      @loan.save
+    end
+
+    respond_to do |format|
+      format.html { redirect_to reserf_soldier_loans_path(@reserve,@soldier), notice: 'Todas os acessorios foram devolvidas com sucesso' }
       format.json { head :no_content }
     end
   end

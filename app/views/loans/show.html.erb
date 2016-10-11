@@ -26,7 +26,7 @@
 	            <p>Modelo: <%= loan_W.weapon.model %></p>
 	            <p>Fabricante: <%= loan_W.weapon.factory %></p>
 	            <p>            	
-	            	<%= link_to reserf_soldier_loan_loan_weapon_path(@reserve,@soldier,@loan,loan_W), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></div><% end %>
+	            	<%= link_to reserf_soldier_loan_loan_weapon_path(@reserve,@soldier,@loan,loan_W), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-danger"><i class="fa fa-exchange" aria-hidden="true"></i></div><% end %>
 	            </p>
 
 	          </li>
@@ -54,9 +54,10 @@
 	        <% @loan.loan_munitions.each do |loan_M| %>
 	          <li class="list-group-item">
 	            <p>Descrição: <%= loan_M.munition.description %></p>
+	            <p>Descrição: <%= loan_M.munition.caliber %></p>
 	            <p>Quantidade: <%= loan_M.amount %></p>
 	            <p>            	
-	            	<%= link_to reserf_soldier_loan_loan_munition_path(@reserve,@soldier,@loan,loan_M), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></div><% end %>
+	            	<%= link_to reserf_soldier_loan_loan_munition_path(@reserve,@soldier,@loan,loan_M), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-danger"><i class="fa fa-exchange" aria-hidden="true"></i></div><% end %>
 	            </p>
 
 	          </li>
@@ -72,5 +73,31 @@
 		<% end %>
 	</div>
 	<div class="col-md-4">
-		
+		<div class="text-md-right"><%= link_to new_reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan) do %><span class="btn btn-success"><i class="fa fa-binoculars" aria-hidden="true"></i></span><% end %></div>
+
+		<% if !@loan.loan_accessories.empty?%>
+			<div class="card">
+	      <div class="card-block">
+	        <h4 class="card-title">acessórios</h4>
+	      </div>
+	      <ul class="list-group list-group-flush">
+	        <% @loan.loan_accessories.each do |loan_A| %>
+	          <li class="list-group-item">
+	            <p>Descrição: <%= loan_A.accessory.description %></p>
+	            <p>Quantidade: <%= loan_A.amount %></p>
+	            <p>            	
+	            	<%= link_to reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan,loan_A), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-danger"><i class="fa fa-exchange" aria-hidden="true"></i></div><% end %>
+	            </p>
+
+	          </li>
+	        <% end %>        
+	      </ul>
+	      <div class="card-block">
+					<p><%= link_to "Devolver Tudo", reserf_soldier_loan_giver_back_all_accessories_path(@reserve,@soldier,@loan), class: "card-link", data: { confirm: 'Realmente deseja devolver tudo?' }%></p>	      
+				</div>
+	      <div class="card-footer text-muted">
+	        <%= @loan.updated_at.time %>
+	      </div>
+	    </div>
+		<% end %>
 	</div>
