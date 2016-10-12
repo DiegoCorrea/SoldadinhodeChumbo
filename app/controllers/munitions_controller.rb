@@ -1,5 +1,5 @@
 class MunitionsController < ApplicationController
-  before_action :set_munition, only: [:show, :edit, :update, :destroy]
+  before_action :set_munition, only: [:edit, :update, :destroy]
 
   # GET /munitions
   # GET /munitions.json
@@ -7,11 +7,6 @@ class MunitionsController < ApplicationController
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @garrison = @reserve.garrison
     @munitions = @reserve.garrison.munitions
-  end
-
-  # GET /munitions/1
-  # GET /munitions/1.json
-  def show
   end
 
   # GET /munitions/new

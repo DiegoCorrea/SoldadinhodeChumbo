@@ -1,5 +1,5 @@
 class AccessoriesController < ApplicationController
-  before_action :set_accessory, only: [:show, :edit, :update, :destroy]
+  before_action :set_accessory, only: [:edit, :update, :destroy]
 
   # GET /accessories
   # GET /accessories.json
@@ -7,11 +7,6 @@ class AccessoriesController < ApplicationController
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @garrison = @reserve.garrison
     @accessories = @reserve.garrison.accessories
-  end
-
-  # GET /accessories/1
-  # GET /accessories/1.json
-  def show
   end
 
   # GET /accessories/new

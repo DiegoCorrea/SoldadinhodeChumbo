@@ -1,5 +1,5 @@
 class WeaponsController < ApplicationController
-  before_action :set_weapon, only: [:show, :edit, :update, :destroy]
+  before_action :set_weapon, only: [:edit, :update, :destroy]
 
   # GET /weapons
   # GET /weapons.json
@@ -7,11 +7,6 @@ class WeaponsController < ApplicationController
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @garrison = @reserve.garrison
     @weapons = @reserve.garrison.weapons
-  end
-
-  # GET /weapons/1
-  # GET /weapons/1.json
-  def show
   end
 
   # GET /weapons/new
