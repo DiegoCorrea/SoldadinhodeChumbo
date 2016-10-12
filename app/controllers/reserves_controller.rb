@@ -4,7 +4,7 @@ class ReservesController < ApplicationController
   # GET /reserves
   # GET /reserves.json
   def index
-    @reserves = Reserve.all
+    @reserves = Reserve.all.order("initials ASC")
   end
 
   # GET /reserves/1
