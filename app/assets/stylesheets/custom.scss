@@ -57,6 +57,34 @@ header{
     }
 }
 
+.initials{
+    margin-bottom: 2rem;
+}
+
+.show-reserva{
+    .card{
+        width: 60%;
+        margin-left: 20%;
+        .card-block{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-content: center;
+        }
+        .card-text{
+            text-align: left;
+        }
+    }
+}
+
+.description{
+    background-color: #f4f4f4;
+    padding: 2rem;
+    border-radius: 5px;
+    width: 60%;
+    margin-left: 20%;
+}
+
 .card-block{
     width: 100%;
     display: flex;
