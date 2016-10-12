@@ -21,6 +21,40 @@ header{
 	}
 }
 
+.header-reserva{
+	background-color:#025aa5;
+	margin-top: 0rem;
+	margin-bottom: 2rem;
+	padding: 1rem;
+	text-align: center;
+	color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+	h1{
+		margin: 0;
+        font-size: 1.6rem;
+	}
+}
+
+.reserve-title{
+    text-align: center;
+    font-weight: bold;
+}
+
+.card-block{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+    text-align: center;
+    .btn{
+        margin-left: 2rem; 
+    }
+}
+
 .ufba{
 	width:80px;
 	margin-left: 47%;
