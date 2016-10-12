@@ -26,17 +26,21 @@ class SoldiersController < ApplicationController
   # POST /soldiers
   # POST /soldiers.json
   def create
-    #@soldier = Soldier.new(soldier_params)
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = @reserve.soldiers.build(soldier_params)
     
     respond_to do |format|
-      if @soldier.save
-        format.html { redirect_to reserf_soldiers_path, notice: 'Soldier was successfully created.' }
-        format.json { render :show, status: :created, location: reserf_soldiers_path }
+      if !@reserve.soldiers.find_by_warName(@soldier.warName)
+        if @soldier.save
+          format.html { redirect_to reserf_soldiers_path, notice: 'Soldier was successfully created.' }
+          format.json { render :show, status: :created, location: reserf_soldiers_path }
+        else
+          format.html { render :new }
+          format.json { render json: @soldier.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :new }
-        format.json { render json: @soldier.errors, status: :unprocessable_entity }
+        format.html { redirect_to new_reserf_soldier_path, notice: 'Soldado já existente nessa Reserva' }
+        format.json { render :show, status: :created, location: new_reserf_soldier_path }
       end
     end
   end

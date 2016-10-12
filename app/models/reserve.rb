@@ -1,4 +1,5 @@
 class Reserve < ActiveRecord::Base
+	validates :initials, :description, presence: true, uniqueness: { case_sensitive: false }
 	has_many :soldiers
 	
 	has_one :garrison

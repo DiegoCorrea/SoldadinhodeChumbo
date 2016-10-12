@@ -1,5 +1,5 @@
 class Soldier < ActiveRecord::Base
-	validates :warName, :function, presence: true, length: { maximum: 31 }
+	validates :warName, :function, presence: true, length: { maximum: 63 }
 
 	#relações
   belongs_to :reserve
