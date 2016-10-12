@@ -25,10 +25,12 @@ class LoansController < ApplicationController
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = Soldier.find(params[:soldier_id])
     @loan = @soldier.loans.build
-  end
-
-  # GET /loans/1/edit
-  def edit
+    if @soldier.loans.find_by_active(true)
+      respond_to do |format|
+        format.html { redirect_to reserf_soldier_loans_path(@reserve,@soldier), notice: 'Já existe uma cautela aberta, por favor utilize-a' }
+        format.json { head :no_content }
+      end
+    end
   end
 
   # POST /loans
@@ -45,20 +47,6 @@ class LoansController < ApplicationController
         format.json { render :show, status: :created, location: reserf_soldier_loan_path(@loan) }
       else
         format.html { render :new }
-        format.json { render json: @loan.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /loans/1
-  # PATCH/PUT /loans/1.json
-  def update
-    respond_to do |format|
-      if @loan.update(loan_params)
-        format.html { redirect_to @loan, notice: 'Loan was successfully updated.' }
-        format.json { render :show, status: :ok, location: @loan }
-      else
-        format.html { render :edit }
         format.json { render json: @loan.errors, status: :unprocessable_entity }
       end
     end

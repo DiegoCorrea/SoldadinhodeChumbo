@@ -1,21 +1,17 @@
 class LoanMunitionsController < ApplicationController
-  before_action :set_loan_munition, only: [:show, :edit, :update, :destroy]
-
-  # GET /loan_munitions
-  # GET /loan_munitions.json
-  def index
-  end
-
-  # GET /loan_munitions/1
-  # GET /loan_munitions/1.json
-  def show
-  end
+  before_action :set_loan_munition, only: [:edit, :update, :destroy]
 
   # GET /loan_munitions/new
   def new
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = Soldier.find(params[:soldier_id])
     @loan = Loan.find(params[:loan_id])
+    if !@loan.active
+      respond_to do |format|
+        format.html { redirect_to reserf_soldier_loans_path(@reserve,@soldier), notice: 'Cautela já encerrada, inicie uma nova cautela' }
+        format.json { head :no_content }
+      end
+    end
     
     @loan_munition = @loan.loan_munitions.build
 

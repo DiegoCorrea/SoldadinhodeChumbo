@@ -1,15 +1,17 @@
 class LoanAccessoriesController < ApplicationController
-  before_action :set_loan_accessory, only: [:show, :edit, :update, :destroy]
-  # GET /loan_accessories/1
-  # GET /loan_accessories/1.json
-  def show
-  end
+  before_action :set_loan_accessory, only: [:edit, :update, :destroy]
 
   # GET /loan_accessories/new
   def new
     @reserve = Reserve.where(id: params[:reserf_id]).first
     @soldier = Soldier.find(params[:soldier_id])
     @loan = Loan.find(params[:loan_id])
+    if !@loan.active
+      respond_to do |format|
+        format.html { redirect_to reserf_soldier_loans_path(@reserve,@soldier), notice: 'Cautela já encerrada, inicie uma nova cautela' }
+        format.json { head :no_content }
+      end
+    end
 
     @loan_accessory = @loan.loan_accessories.build
     @accessories = Accessory.where(garrison: @reserve.garrison).where.not("amount <= ?",0)
