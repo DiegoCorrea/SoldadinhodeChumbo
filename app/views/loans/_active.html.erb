@@ -16,16 +16,15 @@
 	            <p>            	
 	            	<%= link_to reserf_soldier_loan_loan_weapon_path(@reserve,@soldier,@loan,loan_W), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i></div><% end %>
 	            </p>
-
 	          </li>
+	          <div class="card-footer text-muted">
+	        		<%= "Cautelado as"+": "+loan_W.updated_at.time.to_formatted_s(:time) %>
+	      		</div>
 	        <% end %>        
 	      </ul>
 	      <div class="card-block">
 					<p><%= link_to "Devolver Tudo", reserf_soldier_loan_give_back_all_weapons_path(@reserve,@soldier,@loan), class: "card-link", data: { confirm: 'Realmente deseja devolver tudo?' }%></p>	      
 				</div>
-	      <div class="card-footer text-muted">
-	        <%= @loan.updated_at.time %>
-	      </div>
 	    </div>
 		<% end %>
 	</div>
@@ -47,16 +46,15 @@
 	            <p>            	
 	            	<%= link_to reserf_soldier_loan_loan_munition_path(@reserve,@soldier,@loan,loan_M), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i></div><% end %>
 	            </p>
-
 	          </li>
+	          <div class="card-footer text-muted">
+	        		<%= "Cautelado as"+": "+loan_M.updated_at.time.to_formatted_s(:time) %>
+	      		</div>
 	        <% end %>        
 	      </ul>
 	      <div class="card-block">
 					<p><%= link_to "Devolver Tudo", reserf_soldier_loan_give_back_all_munitions_path(@reserve,@soldier,@loan), class: "card-link", data: { confirm: 'Realmente deseja devolver tudo?' }%></p>	      
 				</div>
-	      <div class="card-footer text-muted">
-	        <%= @loan.updated_at.time %>
-	      </div>
 	    </div>
 		<% end %>
 	</div>
@@ -76,16 +74,15 @@
 	            <p>            	
 	            	<%= link_to reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan,loan_A), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-warning"><i class="fa fa-reply" aria-hidden="true"></i></div><% end %>
 	            </p>
-
 	          </li>
+	          <div class="card-footer text-muted">
+	        		<%= "Cautelado as"+": "+loan_A.updated_at.time.to_formatted_s(:time) %>
+	      		</div>
 	        <% end %>        
 	      </ul>
 	      <div class="card-block">
 					<p><%= link_to "Devolver Tudo", reserf_soldier_loan_give_back_all_accessories_path(@reserve,@soldier,@loan), class: "card-link", data: { confirm: 'Realmente deseja devolver tudo?' }%></p>	      
 				</div>
-	      <div class="card-footer text-muted">
-	        <%= @loan.updated_at.time %>
-	      </div>
 	    </div>
 		<% end %>
 	</div>

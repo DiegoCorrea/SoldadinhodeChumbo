@@ -5,37 +5,44 @@
     <div class="text-md-right"><%= link_to new_reserf_soldier_loan_path(@reserve, @soldier) do %><span class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></span><% end %></div>
   <% end %>
   <% @loanActive.each do |loan|%>
-    <div class="col-md-4">
+    <div class="row">
       <div class="card">
         <div class="card-block">
-          <h4 class="card-title">Ativo</h4>
+          <h4 class="card-title text-md-center">Cautela Ativa</h4>
           <div class="text-md-right"><%= link_to reserf_soldier_loan_path(@reserve, @soldier, loan) do %><span class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></span><% end %></div>
         </div>
-        <ul class="list-group list-group-flush">
-          <% loan.loan_weapons.each do |loan_W| %>
-            <li class="list-group-item">
-              <p>Nº de Serie: <%= loan_W.weapon.serialNumber %></p>
-              <p>Modelo: <%= loan_W.weapon.model %></p>
-              <p>Fabricante: <%= loan_W.weapon.factory %></p>
-            </li>
-          <% end %>
-          <% loan.loan_munitions.each do |loan_M| %>
-            <li class="list-group-item">
-              <p>Calibre: <%= loan_M.munition.caliber %></p>
-              <p>Quantidade: <%= loan_M.munition.amount %></p>
-              <p>Descrição: <%= loan_M.munition.description %></p>
-            </li>
-          <% end %>
-          
-          <% loan.loan_accessories.each do |loan_A| %>
-            <li class="list-group-item">
-              <p>Quantidade: <%= loan_A.accessory.amount %></p>
-              <p>Descrição: <%= loan_A.accessory.description %></p>
-            </li>
-          <% end %>
-        </ul>
+        <div class="row">
+          <ul class="list-group list-group-flush">
+            <div class="col-md-4">
+              <% loan.loan_weapons.each do |loan_W| %>
+                <li class="list-group-item">
+                  <p>Nº de Serie: <%= loan_W.weapon.serialNumber %></p>
+                  <p>Modelo: <%= loan_W.weapon.model %></p>
+                  <p>Fabricante: <%= loan_W.weapon.factory %></p>
+                </li>
+              <% end %>
+            </div>
+            <div class="col-md-4">
+              <% loan.loan_munitions.each do |loan_M| %>
+                <li class="list-group-item">
+                  <p>Calibre: <%= loan_M.munition.caliber %></p>
+                  <p>Quantidade: <%= loan_M.munition.amount %></p>
+                  <p>Descrição: <%= loan_M.munition.description %></p>
+                </li>
+              <% end %>
+            </div>
+            <div class="col-md-4">
+              <% loan.loan_accessories.each do |loan_A| %>
+                <li class="list-group-item">
+                  <p>Quantidade: <%= loan_A.accessory.amount %></p>
+                  <p>Descrição: <%= loan_A.accessory.description %></p>
+                </li>
+              <% end %>
+            </div>
+          </ul>
+        </div>
         <div class="card-footer text-muted">
-          <%= loan.updated_at.time %>
+          <%= loan.updated_at.time.strftime("Cautela iniciada em %b, %m %Y") %>
         </div>
       </div>
     </div>
@@ -52,30 +59,20 @@
             <div class="text-md-right"><%= link_to reserf_soldier_loan_path(@reserve, @soldier, loan) do %><span class="btn btn-info"><i class="fa fa-eye" aria-hidden="true"></i></span><% end %></div>
           </div>
           <ul class="list-group list-group-flush">
-            <% loan.loan_weapon_logs.each do |loan_W| %>
-              <li class="list-group-item">
-                <p>Nº de Serie: <%= loan_W.weapon.serialNumber %></p>
-                <p>Modelo: <%= loan_W.weapon.model %></p>
-                <p>Fabricante: <%= loan_W.weapon.factory %></p>
-              </li>
-            <% end %>
-            <% loan.loan_munition_logs.each do |loan_M| %>
-              <li class="list-group-item">
-                <p>Calibre: <%= loan_M.munition.caliber %></p>
-                <p>Quantidade: <%= loan_M.munition.amount %></p>
-                <p>Descrição: <%= loan_M.munition.description %></p>
-              </li>
-            <% end %>
-            
-            <% loan.loan_accessory_logs.each do |loan_A| %>
             <li class="list-group-item">
-              <p>Quantidade: <%= loan_A.accessory.amount %></p>
-              <p>Descrição: <%= loan_A.accessory.description %></p>
+              <p>Armas cauteladas: <%= loan.loan_weapon_logs.length %></p>
             </li>
-          <% end %>
+
+            <li class="list-group-item">
+              <p>Munição Cauteladas: <%= loan.loan_munition_logs.length %></p>
+            </li>
+            
+            <li class="list-group-item">
+              <p>Acessorios Cautelados: <%= loan.loan_accessory_logs.length %></p>
+            </li>
           </ul>
           <div class="card-footer text-muted">
-            <%= loan.updated_at.time %>
+            <%= loan.updated_at.time.strftime("Cautela %b, %m %Y") %>
           </div>
         </div>
       </div>

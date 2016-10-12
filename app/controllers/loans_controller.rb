@@ -10,12 +10,8 @@ class LoansController < ApplicationController
 
     @loanActive = Loan.where(soldier: @soldier).where(active: true)
     @loansLog = Loan.where(soldier: @soldier).where(active: false)
-
-    @active = false
-    if !@loans.empty?
-      if !@loans.order('updated_at DESC').first.loan_weapons.empty?
-        @active = true
-      end
+    if @loansLog
+      @loansLog.order("updated_at DESC")
     end
   end
 

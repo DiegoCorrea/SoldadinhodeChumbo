@@ -10,6 +10,7 @@
   <strong>Soldier:</strong>
   <%= @loan.soldier.warName %>
 </p>
+<p><strong><%= @loan.updated_at.time.strftime("Cautela realidazada em %b, %m %Y") %></strong></p>
 <% if @loan.active %>
 	<%= render "active"%>
 <% else %>
