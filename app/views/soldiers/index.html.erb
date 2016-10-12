@@ -5,34 +5,23 @@
   </p>
 <% end %>
 
-<h2>Lista de Soldados da Reserva: <%= @reserve.initials %></h2>
+<h2 class="text-md-center">Soldados da: <%= @reserve.initials %></h2>
 <p id="notice" class="text-md-center"><%= notice %></p>
-<table>
-  <thead>
-    <tr>
-      <th>Função</th>
-      <th>Nome de Guerra</th>
-      <th class="text-md-center"><%= link_to new_reserf_soldier_path(@reserve) do %><span class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></span><% end %></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @soldiers.each do |soldier| %>
-      <tr>
-        <td><%= soldier.function %></td>
-        <td><%= soldier.warName %></td>
-        <td>
-          <%= link_to reserf_soldier_loans_path(@reserve, soldier) do %><div class="btn btn-info"><i class="fa fa-info" aria-hidden="true"></i></div><% end %>
-        </td>
-        <td>
-          <%= link_to edit_reserf_soldier_path(@reserve, soldier) do %><div class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div><% end %>
-        </td>
-        <td>
-          <%= link_to reserf_soldier_path(@reserve, soldier), method: :delete, data: { confirm: 'Are you sure?' }  do %> <div class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></div><% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="text-md-right"><%= link_to new_reserf_soldier_path(@reserve) do %><span class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i></span><% end %></div>
 
-<br>
+<% @soldiers.each do |soldier| %>
+  <div class="col-md-4">
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><strong>Função: </strong><%= soldier.function %></li>
+        <li class="list-group-item"><strong>Nome de Guerra: </strong><%= soldier.warName %></li>
+      </ul>
+      <div class="card-block">
+        <%= link_to reserf_soldier_loans_path(@reserve, soldier), class: "col-md-4" do %><div class="btn btn-info"><i class="fa fa-info" aria-hidden="true"></i></div><% end %>
+        <%= link_to edit_reserf_soldier_path(@reserve, soldier), class: "col-md-4" do %><div class="btn btn-warning"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></div><% end %>
+        <%= link_to reserf_soldier_path(@reserve, soldier), method: :delete, data: { confirm: 'Are you sure?' }, class: "col-md-4"  do %> <div class="btn btn-danger"><i class="fa fa-times" aria-hidden="true"></i></div><% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
