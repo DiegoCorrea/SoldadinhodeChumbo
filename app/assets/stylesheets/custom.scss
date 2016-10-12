@@ -43,6 +43,20 @@ header{
     font-weight: bold;
 }
 
+.new-form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 2rem;
+    border-radius: 5px;
+    width: 20%;
+    margin-left: 40%;
+    .field{
+        margin: .8rem;
+    }
+}
+
 .card-block{
     width: 100%;
     display: flex;
