@@ -37,23 +37,24 @@ class LoanMunitionsController < ApplicationController
     @loan_munition_log.loan = @loan
     @loan_munition_log.reserve = @reserve
 
-    @munition = Munition.find(@loan_munition.munition)
-    
-    if @munition.amount >= @loan_munition.amount
-      @munition.amount -= @loan_munition.amount
-
-      respond_to do |format|
-        if @loan_munition.save and @munition.save and @loan_munition_log.save
-          format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan munition was successfully created.' }
-          format.json { render :show, status: :created, location: reserf_soldier_loan_path(@reserve,@soldier,@loan) }
+    respond_to do |format|
+      if !@loan_munition.amount.nil? and !@loan_munition.munition.nil?
+        @munition = Munition.find(@loan_munition.munition)
+        if @munition.amount >= @loan_munition.amount
+          @munition.amount -= @loan_munition.amount
+          if @loan_munition.save and @munition.save and @loan_munition_log.save
+            format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan munition was successfully created.' }
+            format.json { render :show, status: :created, location: reserf_soldier_loan_path(@reserve,@soldier,@loan) }
+          else
+            format.html { render :new }
+            format.json { render json: @loan_munition.errors, status: :unprocessable_entity }
+          end
         else
-          format.html { render :new }
-          format.json { render json: @loan_munition.errors, status: :unprocessable_entity }
+          format.html { redirect_to new_reserf_soldier_loan_loan_munition_path(@reserve,@soldier,@loan), notice: 'Só se pode pegar até a quantidade que tem na Reserva' }
+          format.json { render :show, status: :created, location: reserf_soldier_loan_loan_munition_path(@reserve,@soldier,@loan) }
         end
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to new_reserf_soldier_loan_loan_munition_path(@reserve,@soldier,@loan), notice: 'Só se pode pegar até a quantidade que tem na Reserva' }
+      else
+        format.html { redirect_to new_reserf_soldier_loan_loan_munition_path(@reserve,@soldier,@loan), notice: 'É necessario ter uma quantidade e escolher a munição' }
         format.json { render :show, status: :created, location: reserf_soldier_loan_loan_munition_path(@reserve,@soldier,@loan) }
       end
     end
