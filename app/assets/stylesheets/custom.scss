@@ -43,6 +43,52 @@ header{
     font-weight: bold;
 }
 
+.new-form{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f4f4f4;
+    padding: 2rem;
+    border-radius: 5px;
+    width: 20%;
+    margin-left: 40%;
+    .field{
+        margin: .8rem;
+    }
+}
+
+.initials{
+    margin-bottom: 2rem;
+}
+
+.add{
+    margin-bottom: 2rem;
+}
+
+.show-reserva{
+    .card{
+        width: 60%;
+        margin-left: 20%;
+        .card-block{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-content: center;
+        }
+        .card-text{
+            text-align: left;
+        }
+    }
+}
+
+.description{
+    background-color: #f4f4f4;
+    padding: 2rem;
+    border-radius: 5px;
+    width: 60%;
+    margin-left: 20%;
+}
+
 .card-block{
     width: 100%;
     display: flex;
@@ -50,7 +96,7 @@ header{
     justify-content: space-between;
     align-content: center;
     text-align: center;
-    .btn{
+    .btn-left{
         margin-left: 2rem; 
     }
 }

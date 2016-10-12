@@ -1,37 +1,38 @@
-<div class="row">
-  <%= link_to reserves_path do%>
-    <p>
-      <div class="btn"><i class="fa fa-backward" aria-hidden="true"></i></div>
-      <span>Lista de Reservas</span>
-    </p>
-  <% end %>
-</div>
+<header class="header-reserva">
+  <h1>Reserva</h1>
+  <div>
+      <div class="btn btn-secondary">
+        <%= link_to reserves_path do%>
+            <span>Voltar para lista de reservas</span>
+        <% end %>
+      </div>
+  </div>
+</header>
 
-<h2 class="text-md-center">
+<h2 class="text-md-center initials">
   <%= @reserve.initials %>
 </h2>
-
-<p>
+<div class="description">
   <strong>Descrição:</strong>
   <%= @reserve.description %>
-</p>
+</div>
 
 <br>
-<div class="row">
-  <div class="col-md-6">
-    <div class="card">
-      <h3 class="card-header">Guarnição</h3>
-      <div class="card-block">
-        <p class="card-text">Aqui pode-se adicionar, remover, atualizar e editar: Armas, Munições e Acessorios.</p>
+<div class="show-reserva">
+  <div class="card">
+    <h3 class="card-header">Guarnição</h3>
+    <div class="card-block">
+      <p class="card-text">Aqui pode-se adicionar, remover, atualizar e editar: Armas, Munições e Acessorios.</p>
+      <div>
         <%= link_to 'Ir para Guarnição', reserf_garrisons_path(@reserve), class:"btn btn-primary"%>
       </div>
     </div>
   </div>
-  <div class="col-md-6">
-    <div class="card">
-      <h3 class="card-header">Soldados</h3>
-      <div class="card-block">
-        <p class="card-text">Aqui pode-se adicionar, remover, atualizar e editar soldados</p>
+  <div class="card">
+    <h3 class="card-header">Soldados</h3>
+    <div class="card-block">
+      <p class="card-text">Aqui pode-se adicionar, remover, atualizar e editar soldados</p>
+      <div>
         <%= link_to 'Ir para Soldados', reserf_soldiers_path(@reserve), class:"btn btn-primary"%>
       </div>
     </div>
