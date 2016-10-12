@@ -1,14 +1,14 @@
 <header class="header-reserva">
   <h1>Todas as Reservas Cadastradas</h1>
-  <div>
+</header>
+<br>
+  <div class="text-md-center">
     <%= link_to new_reserf_path do %>
       <span class="btn btn-success">
         <i class="fa fa-plus" aria-hidden="true"></i>
       </span>
     <% end %>
   </div>
-</header>
-<br>
 <p id="notice" class="text-md-center"><%= notice %></p>
 <% @reserves.each do |reserf| %>
   <div class="col-md-4">
@@ -26,21 +26,21 @@
       <div class="card-block">
         <div>
           <%= link_to reserf do %>
-            <div class="btn btn-info">
+            <div class="btn btn-left btn-info">
               <i class="fa fa-info" aria-hidden="true"></i>
             </div>
           <% end %>
         </div>
         <div>
           <%= link_to edit_reserf_path(reserf) do %>
-            <div class="btn btn-warning">
+            <div class="btn btn-left btn-warning">
               <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
             </div>
           <% end %>
         </div>
         <div>
-          <%= link_to reserf_path(reserf), method: :delete, data: { confirm: 'Tem certeza que quer excluir?' }  do %> 
-            <div class="btn btn-danger">
+          <%= link_to reserf_path(reserf), method: :delete, data: { confirm: 'Tem certeza que deseja excluir?' }  do %> 
+            <div class="btn btn-left btn-danger">
               <i class="fa fa-times" aria-hidden="true"></i>
             </div>
           <% end %>

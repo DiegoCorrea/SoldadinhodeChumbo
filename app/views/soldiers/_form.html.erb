@@ -13,15 +13,17 @@
     </div>
   <% end %>
 
+<div class="new-form">
   <div class="field">
-    <%= f.label :function %><br>
+    <%= f.label :Função %><br>
     <%= f.text_field :function %>
   </div>
   <div class="field">
-    <%= f.label :warName %><br>
+    <%= f.label :"Nome de Guerra" %><br>
     <%= f.text_field :warName %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+      <%= f.submit "OK", :type => "submit" , :class => "btn btn-primary" %>
   </div>
+</div>
 <% end %>
