@@ -1,16 +1,16 @@
-<%= link_to reserf_soldier_loans_path(@reserve,@soldier,@loan) do %>
-  <p>
-		<div class="btn"><i class="fa fa-backward" aria-hidden="true"></i></div>
-		<span>Reservas do soldado: <%= @soldier.warName %></span>
-	</p>
+<header class="header-reserva">
+  <h1>Histórico de Cautelas</h1>
+	<%= link_to reserf_soldier_loans_path(@reserve,@soldier,@loan) do %>
+  <div class="btn btn-secondary"><span>Reservas do soldado: <%= @soldier.warName %></span></div>
 <% end %>
+</header>
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Soldier:</strong>
-  <%= @loan.soldier.warName %>
-</p>
+<div class="historico">
+  <h3>Soldado:</h3>
+  <p><%= @loan.soldier.warName %></p>
 <p><strong><%= @loan.updated_at.time.strftime("Cautela realidazada em %b, %m %Y") %></strong></p>
+</div>
 <% if @loan.active %>
 	<%= render "active"%>
 <% else %>

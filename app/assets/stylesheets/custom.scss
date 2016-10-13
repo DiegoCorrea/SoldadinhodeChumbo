@@ -88,6 +88,15 @@ header{
     width: 60%;
     margin-left: 20%;
 }
+.historico{
+    background-color: #f4f4f4;
+    padding: 1rem;
+    border-radius: 5px;
+    width: 50%;
+    margin-left: 25%;
+	text-align: center;
+	margin-bottom: 2rem;
+}
 
 .card-block{
     width: 100%;
@@ -132,6 +141,14 @@ header{
 		margin-top: 0;
 		color: #676868;
 	}
+}
+
+.none-margin{
+	margin: 0 !important;
+}
+
+.footer-cautela{
+	margin-top: 2rem;
 }
 
 .group{
