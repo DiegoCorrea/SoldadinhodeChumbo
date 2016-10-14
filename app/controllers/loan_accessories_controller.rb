@@ -36,23 +36,25 @@ class LoanAccessoriesController < ApplicationController
     @loan_accessory_log.loan = @loan
     @loan_accessory_log.reserve = @reserve
 
-    @accessory = Accessory.find(@loan_accessory.accessory)
-    if @accessory.amount >= @loan_accessory.amount
-      @accessory.amount -= @loan_accessory.amount
-
-      respond_to do |format|
-        if @loan_accessory.save and @loan_accessory_log.save and @accessory.save
-          format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan accessory was successfully created.' }
-          format.json { render :show, status: :created, location: reserf_soldier_loan_path(@reserve,@soldier,@loan) }
+    respond_to do |format|
+      if !@loan_accessory.amount.nil? and !@loan_accessory.accessory.nil?
+        @accessory = Accessory.find(@loan_accessory.accessory)
+        if @accessory.amount >= @loan_accessory.amount
+          @accessory.amount -= @loan_accessory.amount
+            if @loan_accessory.save and @loan_accessory_log.save and @accessory.save
+              format.html { redirect_to reserf_soldier_loan_path(@reserve,@soldier,@loan), notice: 'Loan accessory was successfully created.' }
+              format.json { render :show, status: :created, location: reserf_soldier_loan_path(@reserve,@soldier,@loan) }
+            else
+              format.html { render :new }
+              format.json { render json: @loan_accessory.errors, status: :unprocessable_entity }
+            end
         else
-          format.html { render :new }
-          format.json { render json: @loan_accessory.errors, status: :unprocessable_entity }
+          format.html { redirect_to new_reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan), notice: 'Não se pode pegar mais acessorios do que tem na Reserva.' }
+          format.json { render :show, status: :created, location: new_reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan) }
         end
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to new_reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan), notice: 'Não se pode pegar mais acessorios do que tem na Reserva.' }
-        format.json { render :show, status: :created, location: new_reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan) }
+      else
+        format.html { redirect_to new_reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan), notice: 'É necessario uma quantidade e escolher um acessorio' }
+          format.json { render :show, status: :created, location: new_reserf_soldier_loan_loan_accessory_path(@reserve,@soldier,@loan) }
       end
     end
   end
