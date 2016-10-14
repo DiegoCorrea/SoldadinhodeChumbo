@@ -1,29 +1,25 @@
-<div class="row">
-  <%= form_for([@reserve,@soldier,@weapon,@loan,@loan_weapon]) do |f| %>
-    <% if @loan_weapon.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(@loan_weapon.errors.count, "error") %> prohibited this loan_weapon from being saved:</h2>
+<%= form_for([@reserve,@soldier,@weapon,@loan,@loan_weapon]) do |f| %>
+  <% if @loan_weapon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@loan_weapon.errors.count, "error") %> prohibited this loan_weapon from being saved:</h2>
 
-        <ul>
-        <% @loan_weapon.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
-
-    <div class="row">
-      <% @weapons.each do |weapon| %>
-        <div class="col-md-4">
-          <p><%= f.radio_button :weapon_id, weapon.id %>
-          <strong>Nº de Serie:</strong> <%= f.label :weapon_id, weapon.serialNumber %></p>
-          <p><strong>Modelo: </strong><%= f.label :weapon_id, weapon.model %></p>
-          <p><strong>Fabricante: </strong><%= f.label :weapon_id, weapon.factory %></p>
-        </div>
+      <ul>
+      <% @loan_weapon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
       <% end %>
-    </div>
-    <div class="actions">
-      <%= f.submit %>
+      </ul>
     </div>
   <% end %>
+
+  <div class="new-form">
+    <% @weapons.each do |weapon| %>
+        <p><%= f.radio_button :weapon_id, weapon.id %>
+        <strong>Nº de Serie:</strong> <%= f.label :weapon_id, weapon.serialNumber %></p>
+        <p><strong>Modelo: </strong><%= f.label :weapon_id, weapon.model %></p>
+        <p><strong>Fabricante: </strong><%= f.label :weapon_id, weapon.factory %></p>
+    <% end %>
+  <div class="actions">
+     <%= f.submit "OK", :type => "submit" , :class => "btn btn-primary" %>
+  </div>
+<% end %>
 </div>

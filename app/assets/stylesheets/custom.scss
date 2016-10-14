@@ -52,9 +52,14 @@ header{
     border-radius: 5px;
     width: 20%;
     margin-left: 40%;
+	hyphens: auto;
     .field{
         margin: .8rem;
     }
+	hr{
+		border: #ccc solid 1px;
+		width: 100%;
+	}
 }
 
 .initials{

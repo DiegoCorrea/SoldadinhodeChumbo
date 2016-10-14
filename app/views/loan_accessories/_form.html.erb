@@ -1,4 +1,3 @@
-<p id="notice" class="text-md-center"><%= notice %></p>
 <%= form_for([@reserve,@soldier,@loan,@loan_accessory]) do |f| %>
   <% if @loan_accessory.errors.any? %>
     <div id="error_explanation">
@@ -12,20 +11,16 @@
     </div>
   <% end %>
 
-  <div class="row">
+  <div class="new-form">
     <strong>Quantidade a ser retirada: </strong>
     <%= f.number_field :amount %>
-  </div>
   </br>
-  <div class="row">
     <% @accessories.each do |accessory|%>
-      <div class="col-md-4">
         <p><%= f.radio_button :accessory_id, accessory.id %><strong>Descrição: </strong><%= accessory.description %></p>
         <p><strong>Quantidade: </strong><%= accessory.amount %></p>
-      </div>
     <% end %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "OK", :type => "submit" , :class => "btn btn-primary" %>
   </div>
 <% end %>
+  </div>

@@ -12,21 +12,20 @@
     </div>
   <% end %>
 
-  <div class="row">
-    <strong>Quantidade a ser retirada: </strong>
+  <div class="text-md-center">
+    <strong>Quantidade a ser retirada: </strong><br>
     <%= f.number_field :amount %>
   </div>
   </br>
-  <div class="row">
+  <div class="new-form">
     <% @munitions.each do |munition|%>
-      <div class="col-md-4">
         <p><%= f.radio_button :munition_id, munition.id %><strong>Calibre: </strong><%= munition.caliber %></p>
         <p><strong>Descrição: </strong><%= munition.description %></p>
         <p><strong>Quantidade: </strong><%= munition.amount %></p>
-      </div>
+        <hr>
     <% end %>
-  </div>
   <div class="actions">
-    <%= f.submit %>
+     <%= f.submit "OK", :type => "submit" , :class => "btn btn-primary" %>
   </div>
 <% end %>
+  </div>
