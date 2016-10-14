@@ -11,19 +11,21 @@
     </div>
   <% end %>
 
+<div class="new-form">
   <div class="field">
-    <%= f.label :serialNumber %><br>
+    <%= f.label :"Número Serial" %><br>
     <%= f.number_field :serialNumber %>
   </div>
   <div class="field">
-    <%= f.label :model %><br>
+    <%= f.label :Modelo %><br>
     <%= f.text_field :model %>
   </div>
   <div class="field">
-    <%= f.label :factory %><br>
+    <%= f.label :Fábrica %><br>
     <%= f.text_field :factory %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+      <%= f.submit "OK", :type => "submit" , :class => "btn btn-primary" %>
   </div>
 <% end %>
+</div>

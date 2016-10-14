@@ -1,10 +1,11 @@
-<%= link_to reserf_path(@reserve) do %>
-  <p>
-		<div class="btn"><i class="fa fa-backward" aria-hidden="true"></i></div>
-		<span>Reserva</span>
-	</p>
-<% end %>
-<h1 class="text-md-center">Guarnição</h1>
+<header class="header-reserva">
+  <h1>Guarnição</h1>
+  <div class="btn btn-secondary">
+    <%= link_to reserf_path(@reserve) do %>
+      <span>Reserva</span>
+    <% end %>
+  </div>
+</header>
 <p id="notice" class="text-md-center"><%= notice %></p>
 <div class="col-md-4">
   <h3 class="text-md-center">Armas</h3>
